@@ -1,5 +1,9 @@
 # RxSwift 4시간에 끝내기
 
+![](docs/rxswift_in_4_hours_logo.png)
+
+<br/>
+
 ## Contents
 
 ### 1. 기본
