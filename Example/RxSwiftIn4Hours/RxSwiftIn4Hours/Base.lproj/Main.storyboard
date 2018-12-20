@@ -253,16 +253,25 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKF-45-8zi">
+                                <rect key="frame" x="76" y="281" width="52" height="30"/>
+                                <state key="normal" title="취소하기"/>
+                                <connections>
+                                    <action selector="onCancel:" destination="FOR-6T-FMB" eventType="touchUpInside" id="YfA-pY-OiK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="iu6-ec-q6c" firstAttribute="top" secondItem="Taf-hY-4BF" secondAttribute="bottom" constant="8" id="A0r-KF-gQt"/>
                             <constraint firstItem="iu6-ec-q6c" firstAttribute="leading" secondItem="Xpx-Hh-uBm" secondAttribute="leading" constant="16" id="P6R-QZ-7Ab"/>
                             <constraint firstItem="Taf-hY-4BF" firstAttribute="width" secondItem="Taf-hY-4BF" secondAttribute="height" multiplier="16:9" id="RW0-AH-qyN"/>
+                            <constraint firstItem="jKF-45-8zi" firstAttribute="top" secondItem="Taf-hY-4BF" secondAttribute="bottom" constant="8" id="Rez-zL-DGh"/>
                             <constraint firstItem="Taf-hY-4BF" firstAttribute="leading" secondItem="Xpx-Hh-uBm" secondAttribute="leading" constant="16" id="Vfg-RA-aBP"/>
                             <constraint firstItem="Taf-hY-4BF" firstAttribute="top" secondItem="Xpx-Hh-uBm" secondAttribute="top" constant="16" id="YgQ-A6-bBY"/>
                             <constraint firstItem="Q9B-el-FB9" firstAttribute="trailing" secondItem="Taf-hY-4BF" secondAttribute="trailing" id="hOe-MJ-LlY"/>
                             <constraint firstItem="Xpx-Hh-uBm" firstAttribute="trailing" secondItem="Taf-hY-4BF" secondAttribute="trailing" constant="16" id="jf4-yS-fJA"/>
+                            <constraint firstItem="jKF-45-8zi" firstAttribute="leading" secondItem="iu6-ec-q6c" secondAttribute="trailing" constant="8" id="pKm-Fc-1ME"/>
                             <constraint firstItem="Q9B-el-FB9" firstAttribute="centerY" secondItem="iu6-ec-q6c" secondAttribute="centerY" id="vIB-LQ-foT"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xpx-Hh-uBm"/>

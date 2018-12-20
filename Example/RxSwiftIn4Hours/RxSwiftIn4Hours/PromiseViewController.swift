@@ -30,19 +30,21 @@ class PromiseViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction func onLoadImage(_ sender: Any) {
+        imageView.image = nil
+
         promiseLoadImage(from: loadingImageUrl)
             .done { image in
                 self.imageView.image = image
             }.catch { error in
                 print(error.localizedDescription)
-        }
+            }
     }
 
     // MARK: - PromiseKit
 
     func promiseLoadImage(from imageUrl: String) -> Promise<UIImage?> {
         return Promise<UIImage?>() { seal in
-            syncLoadImage(from: imageUrl) { image in
+            asyncLoadImage(from: imageUrl) { image in
                 seal.fulfill(image)
             }
         }

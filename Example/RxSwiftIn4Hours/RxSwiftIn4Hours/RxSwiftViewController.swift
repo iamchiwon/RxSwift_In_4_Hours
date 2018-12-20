@@ -30,6 +30,8 @@ class RxSwiftViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction func onLoadImage(_ sender: Any) {
+        imageView.image = nil
+
         _ = rxswiftLoadImage(from: loadingImageUrl)
             .observeOn(MainScheduler.instance)
             .subscribe({ result in
@@ -46,11 +48,14 @@ class RxSwiftViewController: UIViewController {
             })
     }
 
+    @IBAction func onCancel(_ sender: Any) {
+    }
+
     // MARK: - RxSwift
 
     func rxswiftLoadImage(from imageUrl: String) -> Observable<UIImage?> {
         return Observable.create { seal in
-            syncLoadImage(from: imageUrl) { image in
+            asyncLoadImage(from: imageUrl) { image in
                 seal.onNext(image)
                 seal.onCompleted()
             }
