@@ -74,29 +74,35 @@ var disposeBag = DisposeBag()
 <br/>
 
 ### 2. 사용법
-#### just, from
-#### map, flatMap
-#### filter
-#### 마블 그림 보기
-#### error handling
-#### side-effect
-#### Driver
-#### binding
+- just, from
+- map, flatMap
+- filter
+- next, error completed
+- marbles
+- side-effect
+
+<br/>
 
 ### 3. 응용
-#### Subject, Relay
-#### Other Operators
+- Subject, Relay
+- Other Operators
      take, delay, interval, 
      combine, merge, zip
-#### Unfinished Observable
-#### Momory Leak
+- Unfinished Observable
+- Momory Leak
+
+<br/>
 
 ### 4. 확장
-#### RxViewController
-#### RxOptional
-#### RxExtension
-#### extension
+- RxCocoa
+  - Driver
+  - binding
+- RxViewController
+- RxOptional
+- RxExtension
+- extension
 
+<br/>
 
 ## License
 
