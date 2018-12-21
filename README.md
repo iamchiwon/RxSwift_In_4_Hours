@@ -81,11 +81,23 @@ var disposeBag = DisposeBag()
 - just, from
 - map, flatMap
 - filter
+- operators
+  - 생성
+  - 변환
+  - 필터링
+  - 결합
+  - 오류처리
+  - 조건과 불린 연산자
+  - 수학과 집계 연산자
+  - 역압 연산자
+  - 연결
+  - Observable 변환
+  - [A Decision Tree of Observable Operators](http://reactivex.io/documentation/ko/operators.html)
 - scheduler
 - next, error, completed
-- marbles<br/>
-  [http://rxmarbles.com/](http://rxmarbles.com/)<br/>
-  [http://reactivex.io/documentation/operators.html](http://reactivex.io/documentation/operators.html)
+- marbles
+  - [http://rxmarbles.com/](http://rxmarbles.com/)
+  - [http://reactivex.io/documentation/operators.html](http://reactivex.io/documentation/operators.html)
 - side-effect
 - RxCocoa
   - Driver
@@ -95,19 +107,16 @@ var disposeBag = DisposeBag()
 
 ### 3. 응용
 - Subject, Relay
-- Other Operators
-     take, delay, interval, 
-     combine, merge, zip
 - Unfinished Observable
 - Momory Leak
 
 <br/>
 
 ### 4. 확장
-- RxViewController
-- RxOptional
-- RxExtension
-- extension
+- [RxViewController](https://github.com/devxoul/RxViewController)
+- [RxOptional](https://github.com/RxSwiftCommunity/RxOptional)
+- [RxExtension](https://github.com/tokijh/RxSwiftExtensions)
+- [RxSwift Community Projects](https://community.rxswift.org/)
 
 <br/>
 
