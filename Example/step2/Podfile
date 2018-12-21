@@ -6,7 +6,6 @@ target 'RxSwiftIn4Hours' do
   use_frameworks!
 
   # Pods for RxSwiftIn4Hours
-  pod 'PromiseKit'
   pod 'RxSwift'
 
 end
