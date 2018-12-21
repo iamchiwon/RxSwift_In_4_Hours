@@ -81,9 +81,15 @@ var disposeBag = DisposeBag()
 - just, from
 - map, flatMap
 - filter
-- next, error completed
-- marbles
+- scheduler
+- next, error, completed
+- marbles<br/>
+  [http://rxmarbles.com/](http://rxmarbles.com/)<br/>
+  [http://reactivex.io/documentation/operators.html](http://reactivex.io/documentation/operators.html)
 - side-effect
+- RxCocoa
+  - Driver
+  - binding
 
 <br/>
 
@@ -98,9 +104,6 @@ var disposeBag = DisposeBag()
 <br/>
 
 ### 4. 확장
-- RxCocoa
-  - Driver
-  - binding
 - RxViewController
 - RxOptional
 - RxExtension
