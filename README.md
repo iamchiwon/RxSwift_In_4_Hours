@@ -120,6 +120,11 @@ var disposeBag = DisposeBag()
 
 <br/>
 
+## 세미나 영상보기
+- [RxSwift 4시간에 끝내기](https://www.youtube.com/watch?v=2uumx7Vzidc&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq)
+
+<br/>
+
 ## License
 
 ![](docs/cc_license.png)
