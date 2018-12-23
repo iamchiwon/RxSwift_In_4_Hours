@@ -108,7 +108,7 @@ var disposeBag = DisposeBag()
 ### 3. 응용
 - Subject, Relay
 - Unfinished Observable
-- Momory Leak
+- Memory Leak
 
 <br/>
 
