@@ -122,6 +122,18 @@ var disposeBag = DisposeBag()
 
 ## 세미나 영상보기
 - [RxSwift 4시간에 끝내기](https://www.youtube.com/watch?v=2uumx7Vzidc&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq)
+- 목차
+    1. ReactiveX 사이트 둘러보기
+    2. 비동기 작업과 Observable
+    3. Disposable / DisposeBag
+    4. 기본 Operators
+    5. Operator 종류들
+    6. Marble Diagram 이해하기
+    7. Next, Error, Completed
+    8. Scheduler
+    9. RxSwift 응용해보기
+    10. Subject
+    11. 확장라이브러리들 그리고 마무리
 
 <br/>
 
