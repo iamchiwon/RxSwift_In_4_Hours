@@ -98,6 +98,7 @@ var disposeBag = DisposeBag()
 - marbles
   - [http://rxmarbles.com/](http://rxmarbles.com/)
   - [http://reactivex.io/documentation/operators.html](http://reactivex.io/documentation/operators.html)
+  - [https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8](https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8)
 - side-effect
 - RxCocoa
   - Driver
