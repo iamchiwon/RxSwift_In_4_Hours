@@ -1,37 +1,36 @@
 PODS:
-  - PromiseKit (6.7.0):
-    - PromiseKit/CorePromise (= 6.7.0)
-    - PromiseKit/Foundation (= 6.7.0)
-    - PromiseKit/UIKit (= 6.7.0)
-  - PromiseKit/CorePromise (6.7.0)
-  - PromiseKit/Foundation (6.7.0):
+  - Bolts-Swift (1.4.0)
+  - PromiseKit (6.7.1):
+    - PromiseKit/CorePromise (= 6.7.1)
+    - PromiseKit/Foundation (= 6.7.1)
+    - PromiseKit/UIKit (= 6.7.1)
+  - PromiseKit/CorePromise (6.7.1)
+  - PromiseKit/Foundation (6.7.1):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.7.0):
+  - PromiseKit/UIKit (6.7.1):
     - PromiseKit/CorePromise
   - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
-    - RxSwift (~> 4.0)
   - RxSwift (4.4.0):
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
+  - Bolts-Swift
   - PromiseKit
-  - RxCocoa
   - RxSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Bolts-Swift
     - PromiseKit
     - RxAtomic
-    - RxCocoa
     - RxSwift
 
 SPEC CHECKSUMS:
-  PromiseKit: 453ddcc947fe7b302f3ef41882b81d31c554df7f
+  Bolts-Swift: 650d72e8017721b1a6bbe43d542c4578f8e5ba6f
+  PromiseKit: ef376fb8b4e92edfeb66bd403b983eaa07fbde0c
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
 
-PODFILE CHECKSUM: ff223569212bb9da5eb19392575ebcfe7465b4a1
+PODFILE CHECKSUM: 4dac57814f899b89563af2bc3ff1e9283724e53a
 
 COCOAPODS: 1.5.3

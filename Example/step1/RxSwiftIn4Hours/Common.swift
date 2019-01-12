@@ -14,18 +14,17 @@ let largestImageUrl = "https://picsum.photos/2560/1440/?random"
 
 let loadingImageUrl = largerImageUrl
 
+func syncLoadImage(from imageUrl: String) -> UIImage? {
+    guard let url = URL(string: imageUrl) else { return nil }
+    guard let data = try? Data(contentsOf: url) else { return nil }
+
+    let image = UIImage(data: data)
+    return image
+}
+
 func asyncLoadImage(from imageUrl: String, completed: @escaping (UIImage?) -> Void) {
     DispatchQueue.global().async {
-        guard let url = URL(string: imageUrl) else {
-            completed(nil)
-            return
-        }
-        guard let data = try? Data(contentsOf: url) else {
-            completed(nil)
-            return
-        }
-
-        let image = UIImage(data: data)
+        let image = syncLoadImage(from: imageUrl)
         completed(image)
     }
 }

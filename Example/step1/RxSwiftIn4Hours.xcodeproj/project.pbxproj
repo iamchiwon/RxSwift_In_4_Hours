@@ -15,6 +15,7 @@
 		A17B1A2F21CC1996002F67D4 /* PromiseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17B1A2E21CC1996002F67D4 /* PromiseViewController.swift */; };
 		A17B1A3121CC2267002F67D4 /* RxSwiftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17B1A3021CC2267002F67D4 /* RxSwiftViewController.swift */; };
 		A17B1A3321CC247D002F67D4 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17B1A3221CC247D002F67D4 /* Common.swift */; };
+		A1A5258521EA250600D20316 /* BoltsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A5258421EA250600D20316 /* BoltsViewController.swift */; };
 		BF331A59C40B4A3C07B954BB /* Pods_RxSwiftIn4Hours.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA3077934E57373C53B96B31 /* Pods_RxSwiftIn4Hours.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		A17B1A2E21CC1996002F67D4 /* PromiseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromiseViewController.swift; sourceTree = "<group>"; };
 		A17B1A3021CC2267002F67D4 /* RxSwiftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftViewController.swift; sourceTree = "<group>"; };
 		A17B1A3221CC247D002F67D4 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		A1A5258421EA250600D20316 /* BoltsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoltsViewController.swift; sourceTree = "<group>"; };
 		BA3077934E57373C53B96B31 /* Pods_RxSwiftIn4Hours.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwiftIn4Hours.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9EA195C82CD26BF9891E9B6 /* Pods-RxSwiftIn4Hours.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwiftIn4Hours.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwiftIn4Hours/Pods-RxSwiftIn4Hours.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +90,7 @@
 				A17B1A3221CC247D002F67D4 /* Common.swift */,
 				A17B1A1E21CC0F84002F67D4 /* AsyncViewController.swift */,
 				A17B1A2E21CC1996002F67D4 /* PromiseViewController.swift */,
+				A1A5258421EA250600D20316 /* BoltsViewController.swift */,
 				A17B1A3021CC2267002F67D4 /* RxSwiftViewController.swift */,
 				A17B1A2021CC0F84002F67D4 /* Main.storyboard */,
 				A17B1A2321CC0F86002F67D4 /* Assets.xcassets */,
@@ -175,18 +178,18 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwiftIn4Hours/Pods-RxSwiftIn4Hours-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoltsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -228,6 +231,7 @@
 				A17B1A1D21CC0F84002F67D4 /* AppDelegate.swift in Sources */,
 				A17B1A3321CC247D002F67D4 /* Common.swift in Sources */,
 				A17B1A2F21CC1996002F67D4 /* PromiseViewController.swift in Sources */,
+				A1A5258521EA250600D20316 /* BoltsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

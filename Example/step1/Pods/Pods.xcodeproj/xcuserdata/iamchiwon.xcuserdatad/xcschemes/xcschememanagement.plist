@@ -4,28 +4,28 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-RxSwiftIn4Hours.xcscheme</key>
+		<key>Bolts-Swift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>PromiseKit.xcscheme</key>
+		<key>Pods-RxSwiftIn4Hours.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>RxAtomic.xcscheme</key>
+		<key>PromiseKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>RxCocoa.xcscheme</key>
+		<key>RxAtomic.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

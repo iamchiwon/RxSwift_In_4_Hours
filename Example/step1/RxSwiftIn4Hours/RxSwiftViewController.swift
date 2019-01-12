@@ -49,6 +49,7 @@ class RxSwiftViewController: UIViewController {
     }
 
     @IBAction func onCancel(_ sender: Any) {
+        // TODO: cancel image loading
     }
 
     // MARK: - RxSwift
