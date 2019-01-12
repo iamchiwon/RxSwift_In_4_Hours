@@ -15,7 +15,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindUI()
+        idField.addTarget(self, action: #selector(checkIdValid), for: .editingChanged)
+        pwField.addTarget(self, action: #selector(checkPwValid), for: .editingChanged)
     }
 
     // MARK: - IBOutler
@@ -26,14 +27,43 @@ class ViewController: UIViewController {
     @IBOutlet var idValidView: UIView!
     @IBOutlet var pwValidView: UIView!
 
-    // MARK: - Bind UI
+    // MARK: - EVENT
 
-    private func bindUI() {
-        // id input +--> check valid --> bullet
-        //          |
-        //          +--> button enable
-        //          |
-        // pw input +--> check valid --> bullet
+    @objc func checkIdValid() {
+        guard let text = idField.text else {
+            idValidView.isHidden = true
+            return
+        }
+        if text.isEmpty {
+            idValidView.isHidden = true
+            return
+        }
+        idValidView.isHidden = checkEmailValid(text)
+
+        checkLoginButton()
+    }
+
+    @objc func checkPwValid() {
+        guard let text = pwField.text else {
+            pwValidView.isHidden = true
+            return
+        }
+        if text.isEmpty {
+            pwValidView.isHidden = true
+            return
+        }
+        pwValidView.isHidden = checkPasswordValid(text)
+
+        checkLoginButton()
+    }
+
+    func checkLoginButton() {
+        guard let email = idField.text else { return }
+        guard let password = pwField.text else { return }
+        guard !email.isEmpty else { return }
+        guard !password.isEmpty else { return }
+        
+        loginButton.isEnabled = idValidView.isHidden && pwValidView.isHidden
     }
 
     // MARK: - Logic
