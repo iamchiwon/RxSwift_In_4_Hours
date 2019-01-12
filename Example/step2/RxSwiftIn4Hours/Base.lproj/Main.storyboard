@@ -218,8 +218,12 @@
                                                         <constraint firstAttribute="width" secondItem="1mo-tq-TQe" secondAttribute="height" multiplier="16:9" id="TAf-wj-A6X"/>
                                                     </constraints>
                                                 </imageView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="SbU-Jp-MiO">
+                                                    <rect key="frame" x="177.5" y="139" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="SbU-Jp-MiO" firstAttribute="centerY" secondItem="1mo-tq-TQe" secondAttribute="centerY" id="95L-Tt-xUy"/>
                                                 <constraint firstAttribute="trailing" secondItem="peh-Nc-kWe" secondAttribute="trailing" id="A9e-zU-N7Q"/>
                                                 <constraint firstItem="1mo-tq-TQe" firstAttribute="top" secondItem="peh-Nc-kWe" secondAttribute="bottom" id="BgF-uk-50W"/>
                                                 <constraint firstItem="peh-Nc-kWe" firstAttribute="leading" secondItem="xrm-iM-u3u" secondAttribute="leading" id="C9t-ol-lyY"/>
@@ -228,6 +232,7 @@
                                                 <constraint firstItem="1mo-tq-TQe" firstAttribute="leading" secondItem="xrm-iM-u3u" secondAttribute="leading" id="QaI-Ya-LyA"/>
                                                 <constraint firstItem="1mo-tq-TQe" firstAttribute="centerX" secondItem="xrm-iM-u3u" secondAttribute="centerX" id="cJ1-7z-fIJ"/>
                                                 <constraint firstItem="peh-Nc-kWe" firstAttribute="top" secondItem="xrm-iM-u3u" secondAttribute="top" id="d75-dj-B9u"/>
+                                                <constraint firstItem="SbU-Jp-MiO" firstAttribute="centerX" secondItem="1mo-tq-TQe" secondAttribute="centerX" id="xPA-yK-S8G"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -242,6 +247,7 @@
                     <navigationItem key="navigationItem" title="Observable" id="vph-P5-qRw"/>
                     <connections>
                         <outlet property="imageView" destination="1mo-tq-TQe" id="K4Q-DA-yJN"/>
+                        <outlet property="progressView" destination="SbU-Jp-MiO" id="anT-6J-App"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="toc-eh-cvl" userLabel="First Responder" sceneMemberID="firstResponder"/>

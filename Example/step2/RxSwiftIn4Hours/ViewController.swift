@@ -11,7 +11,8 @@ import UIKit
 
 class ViewController: UITableViewController {
     @IBOutlet var imageView: UIImageView!
-
+    @IBOutlet weak var progressView: UIActivityIndicatorView!
+    
     var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
