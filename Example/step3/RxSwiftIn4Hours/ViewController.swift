@@ -29,6 +29,22 @@ class ViewController: UIViewController {
     // MARK: - Bind UI
 
     private func bindUI() {
+        idField.rx.text
+            .map { [weak self] text -> Bool in
+                if let text = text, self?.checkEmailValid(text) ?? false  { return true }
+                return false
+            }
+            .bind(to: idValidView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
+        pwField.rx.text
+            .map { [weak self] text -> Bool in
+                if let text = text, self?.checkPasswordValid(text) ?? false  { return true }
+                return false
+            }
+            .bind(to: pwValidView.rx.isHidden)
+            .disposed(by: disposeBag)
+        
         // id input +--> check valid --> bullet
         //          |
         //          +--> button enable
