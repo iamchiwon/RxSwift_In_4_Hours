@@ -8,5 +8,6 @@ target 'RxSwiftIn4Hours' do
   # Pods for RxSwiftIn4Hours
   pod 'RxSwift'
   pod 'RxCocoa'
+  pod 'SwiftyJSON'
 
 end

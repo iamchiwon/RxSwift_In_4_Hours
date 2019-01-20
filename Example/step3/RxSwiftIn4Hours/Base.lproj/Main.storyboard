@@ -71,9 +71,6 @@
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <segue destination="xxL-mo-gDn" kind="show" id="wR1-79-BuL"/>
-                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXd-rO-8w2">
                                 <rect key="frame" x="341" y="88" width="10" height="10"/>
@@ -138,7 +135,7 @@
         <!--Login Success-->
         <scene sceneID="XeP-9O-YjL">
             <objects>
-                <viewController id="xxL-mo-gDn" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginSuccessViewController" id="xxL-mo-gDn" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uyS-4l-asJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
