@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     @IBOutlet var loginButton: UIButton!
     @IBOutlet var idValidView: UIView!
     @IBOutlet var pwValidView: UIView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
     // MARK: - Bind UI
 
@@ -39,22 +40,14 @@ class ViewController: UIViewController {
             .subscribe(onNext: viewModel.passwordInput)
             .disposed(by: disposeBag)
 
-        loginButton.rx.tap
-            .flatMap { _ in
-                self.viewModel.login(email: self.idField.text!, pass: self.pwField.text!)
-                    .observeOn(MainScheduler.instance)
-                    .do(onError: { err in
-                        let nsError = err as NSError
-                        let failMessage = nsError.domain
-                        self.alert(failMessage)
-                    })
-                    .catchErrorJustReturn(false)
-            }
+        loginButton.rx.tap.asObservable()
+            .withLatestFrom(idField.rx.text.orEmpty)
+            .withLatestFrom(pwField.rx.text.orEmpty) { ($0, $1) }
+            .flatMap { self.viewModel.login(email: $0, pass: $1) }
             .filter { $0 }
+            .map { _ in () }
             .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { _ in
-                self.goLoginSuccessViewController()
-            })
+            .subscribe(onNext: goLoginSuccessViewController)
             .disposed(by: disposeBag)
 
         // OUTPUT
@@ -70,6 +63,18 @@ class ViewController: UIViewController {
 
         viewModel.loginEnable
             .bind(to: loginButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+
+        viewModel.progressVisible
+            .observeOn(MainScheduler.instance)
+            .bind(to: activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+
+        viewModel.errorMessage
+            .observeOn(MainScheduler.instance)
+            .map { $0 as NSError }
+            .map { $0.domain }
+            .subscribe(onNext: alert)
             .disposed(by: disposeBag)
     }
 

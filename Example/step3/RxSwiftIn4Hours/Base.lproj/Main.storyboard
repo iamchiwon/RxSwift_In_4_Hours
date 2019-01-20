@@ -100,6 +100,9 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qK2-sf-vHl">
+                                <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -107,6 +110,8 @@
                             <constraint firstItem="3cn-eb-6ce" firstAttribute="leading" secondItem="ZPR-ka-SEl" secondAttribute="leading" constant="16" id="3nP-sd-GkQ"/>
                             <constraint firstItem="ZPR-ka-SEl" firstAttribute="trailing" secondItem="WZr-WG-ZEV" secondAttribute="trailing" constant="16" id="7NK-IS-Ekx"/>
                             <constraint firstItem="3cn-eb-6ce" firstAttribute="top" secondItem="WZr-WG-ZEV" secondAttribute="bottom" constant="16" id="Eld-fI-Lbk"/>
+                            <constraint firstItem="qK2-sf-vHl" firstAttribute="centerX" secondItem="fgd-CP-OeG" secondAttribute="centerX" id="GaP-CP-1lK"/>
+                            <constraint firstItem="qK2-sf-vHl" firstAttribute="centerY" secondItem="fgd-CP-OeG" secondAttribute="centerY" id="MAi-EN-Y7t"/>
                             <constraint firstItem="1cK-Ng-uLB" firstAttribute="leading" secondItem="ZPR-ka-SEl" secondAttribute="leading" constant="16" id="MbD-ri-gmn"/>
                             <constraint firstItem="UFD-GE-iF0" firstAttribute="trailing" secondItem="WZr-WG-ZEV" secondAttribute="trailing" constant="-8" id="a4F-ZF-xJO"/>
                             <constraint firstItem="WXd-rO-8w2" firstAttribute="trailing" secondItem="1cK-Ng-uLB" secondAttribute="trailing" constant="-8" id="c7d-ld-Hcx"/>
@@ -121,6 +126,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="bpA-qD-djp"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="qK2-sf-vHl" id="Lsd-FQ-r5w"/>
                         <outlet property="idField" destination="1cK-Ng-uLB" id="GcA-Km-GLz"/>
                         <outlet property="idValidView" destination="WXd-rO-8w2" id="gDW-zt-Hz9"/>
                         <outlet property="loginButton" destination="3cn-eb-6ce" id="pHW-IS-1OC"/>
