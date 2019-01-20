@@ -7,9 +7,6 @@
 ## Contents
 
 ### 1. 기본
-#### 공식 사이트 둘러보기
-- [http://reactivex.io/](http://reactivex.io/)
-- [RxSwift](https://github.com/ReactiveX/RxSwift)
 
 #### 동기/비동기
 - 동기
@@ -38,7 +35,13 @@
 }
 ```
 
-#### 라이브러리 (PromiseKit)
+- 리액티브 : [[wikipedia]Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming)
+> In computing, reactive programming is a declarative programming paradigm concerned with data streams and the propagation of change.
+
+#### 라이브러리
+
+- PromiseKit
+
 ```swift
 promiseLoadImage(from: loadingImageUrl)
     .done { image in
@@ -48,7 +51,10 @@ promiseLoadImage(from: loadingImageUrl)
 }
 ```
 
-#### RxSwift
+- Reactive X
+	- [http://reactivex.io/](http://reactivex.io/)
+	- [RxSwift](https://github.com/ReactiveX/RxSwift)
+
 ```swift
 _ = rxswiftLoadImage(from: loadingImageUrl)
     .observeOn(MainScheduler.instance)
@@ -93,13 +99,12 @@ var disposeBag = DisposeBag()
   - 연결
   - Observable 변환
   - [A Decision Tree of Observable Operators](http://reactivex.io/documentation/ko/operators.html)
-- scheduler
-- next, error, completed
 - marbles
   - [http://rxmarbles.com/](http://rxmarbles.com/)
   - [http://reactivex.io/documentation/operators.html](http://reactivex.io/documentation/operators.html)
   - [https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8](https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8)
-- side-effect
+- scheduler
+- next, error, completed
 - RxCocoa
   - Driver
   - binding
@@ -107,9 +112,13 @@ var disposeBag = DisposeBag()
 <br/>
 
 ### 3. 응용
-- Subject, Relay
-- Unfinished Observable
-- Memory Leak
+- Subject
+- RxCocoa
+	- Driver
+	- Binding
+	- Relay
+- Unfinished Observable / Memory Leak
+	- (참조) [클로져와 메모리 해제 실험](https://iamchiwon.github.io/2018/08/13/closure-mem/)
 
 <br/>
 
@@ -122,19 +131,7 @@ var disposeBag = DisposeBag()
 <br/>
 
 ## 세미나 영상보기
-- [RxSwift 4시간에 끝내기](https://www.youtube.com/watch?v=2uumx7Vzidc&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq)
-- 목차
-    1. ReactiveX 사이트 둘러보기
-    2. 비동기 작업과 Observable
-    3. Disposable / DisposeBag
-    4. 기본 Operators
-    5. Operator 종류들
-    6. Marble Diagram 이해하기
-    7. Next, Error, Completed
-    8. Scheduler
-    9. RxSwift 응용해보기
-    10. Subject
-    11. 확장라이브러리들 그리고 마무리
+- [(유튜브) RxSwift 4시간에 끝내기](https://www.youtube.com/watch?v=2uumx7Vzidc&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq)
 
 <br/>
 
