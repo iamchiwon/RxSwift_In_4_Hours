@@ -11,7 +11,7 @@ import UIKit
 
 class PromiseViewController: UIViewController {
     // MARK: - Field
-
+    
     var counter: Int = 0
 
     override func viewDidLoad() {
@@ -32,7 +32,7 @@ class PromiseViewController: UIViewController {
     @IBAction func onLoadImage(_ sender: Any) {
         imageView.image = nil
 
-        promiseLoadImage(from: loadingImageUrl)
+        promiseLoadImage(from: LARGER_IMAGE_URL)
             .done { image in
                 self.imageView.image = image
             }.catch { error in

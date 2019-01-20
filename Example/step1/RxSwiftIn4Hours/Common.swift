@@ -8,11 +8,9 @@
 
 import UIKit
 
-let largeImageUrl = "https://picsum.photos/1024/768/?random"
-let largerImageUrl = "https://picsum.photos/1280/720/?random"
-let largestImageUrl = "https://picsum.photos/2560/1440/?random"
-
-let loadingImageUrl = largerImageUrl
+let LARGE_IMAGE_URL = "https://picsum.photos/1024/768/?random"
+let LARGER_IMAGE_URL = "https://picsum.photos/1280/720/?random"
+let LARGEST_IMAGE_URL = "https://picsum.photos/2560/1440/?random"
 
 func syncLoadImage(from imageUrl: String) -> UIImage? {
     guard let url = URL(string: imageUrl) else { return nil }

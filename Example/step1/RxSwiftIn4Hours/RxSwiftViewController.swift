@@ -32,7 +32,7 @@ class RxSwiftViewController: UIViewController {
     @IBAction func onLoadImage(_ sender: Any) {
         imageView.image = nil
 
-        _ = rxswiftLoadImage(from: loadingImageUrl)
+        _ = rxswiftLoadImage(from: LARGER_IMAGE_URL)
             .observeOn(MainScheduler.instance)
             .subscribe({ result in
                 switch result {

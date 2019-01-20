@@ -32,7 +32,7 @@ class BoltsViewController: UIViewController {
     @IBAction func onLoadImage(_ sender: Any) {
         imageView.image = nil
 
-        boltsLoadImage(from: loadingImageUrl)
+        boltsLoadImage(from: LARGER_IMAGE_URL)
             .continueWith(continuation: { task in
                 DispatchQueue.main.async {
                     let image = task.result

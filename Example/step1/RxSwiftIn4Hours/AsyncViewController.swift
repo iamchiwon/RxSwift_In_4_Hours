@@ -12,6 +12,7 @@ class AsyncViewController: UIViewController {
     // MARK: - Field
 
     var counter: Int = 0
+    let IMAGE_URL = "https://picsum.photos/1280/720/?random"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +30,19 @@ class AsyncViewController: UIViewController {
     // MARK: - IBAction
 
     @IBAction func onLoadSync(_ sender: Any) {
-        guard let url = URL(string: loadingImageUrl) else { return }
-        guard let data = try? Data(contentsOf: url) else { return }
-
-        let image = UIImage(data: data)
+        let image = loadImage(from: IMAGE_URL)
         imageView.image = image
     }
 
     @IBAction func onLoadAsync(_ sender: Any) {
-        DispatchQueue.global().async {
-            guard let url = URL(string: loadingImageUrl) else { return }
-            guard let data = try? Data(contentsOf: url) else { return }
+        // TODO: async
+    }
 
-            let image = UIImage(data: data)
+    private func loadImage(from imageUrl: String) -> UIImage? {
+        guard let url = URL(string: imageUrl) else { return nil }
+        guard let data = try? Data(contentsOf: url) else { return nil }
 
-            DispatchQueue.main.async {
-                self.imageView.image = image
-            }
-        }
+        let image = UIImage(data: data)
+        return image
     }
 }
