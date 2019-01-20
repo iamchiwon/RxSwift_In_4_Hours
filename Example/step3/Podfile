@@ -9,5 +9,6 @@ target 'RxSwiftIn4Hours' do
   pod 'RxSwift'
   pod 'RxCocoa'
   pod 'SwiftyJSON'
+  pod 'ReactorKit'
 
 end

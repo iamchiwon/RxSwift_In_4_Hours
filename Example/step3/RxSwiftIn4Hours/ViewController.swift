@@ -6,17 +6,17 @@
 //  Copyright © 2018 n.code. All rights reserved.
 //
 
+import ReactorKit
 import RxCocoa
 import RxSwift
 import UIKit
 
-class ViewController: UIViewController {
-    let viewModel = ViewModel()
+class ViewController: UIViewController, StoryboardView {
     var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bindUI()
+        reactor = ViewReactor()
     }
 
     // MARK: - IBOutler
@@ -30,50 +30,50 @@ class ViewController: UIViewController {
 
     // MARK: - Bind UI
 
-    private func bindUI() {
+    func bind(reactor: ViewReactor) {
         // INPUT
+
         idField.rx.text.orEmpty
-            .subscribe(onNext: viewModel.emailInput)
+            .map { ViewReactor.Action.email($0) }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
 
         pwField.rx.text.orEmpty
-            .subscribe(onNext: viewModel.passwordInput)
+            .map { ViewReactor.Action.password($0) }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
 
-        loginButton.rx.tap.asObservable()
+        loginButton.rx.tap
             .withLatestFrom(idField.rx.text.orEmpty)
             .withLatestFrom(pwField.rx.text.orEmpty) { ($0, $1) }
-            .flatMap { self.viewModel.login(email: $0, pass: $1) }
-            .filter { $0 }
-            .map { _ in () }
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: goLoginSuccessViewController)
+            .map { ViewReactor.Action.login($0.0, $0.1) }
+            .bind(to: reactor.action)
             .disposed(by: disposeBag)
 
         // OUTPUT
-        viewModel.idBulletVisible
+
+        reactor.state.map { $0.idBulletVisible }
             .map { !$0 }
             .bind(to: idValidView.rx.isHidden)
             .disposed(by: disposeBag)
 
-        viewModel.pwBulletVisible
+        reactor.state.map { $0.pwBulletVisible }
             .map { !$0 }
             .bind(to: pwValidView.rx.isHidden)
             .disposed(by: disposeBag)
 
-        viewModel.loginEnable
+        reactor.state.map { $0.loginEnable }
             .bind(to: loginButton.rx.isEnabled)
             .disposed(by: disposeBag)
 
-        viewModel.progressVisible
-            .observeOn(MainScheduler.instance)
+        reactor.state.map { $0.progressVisible }
             .bind(to: activityIndicator.rx.isAnimating)
             .disposed(by: disposeBag)
 
-        viewModel.errorMessage
-            .observeOn(MainScheduler.instance)
-            .map { $0 as NSError }
-            .map { $0.domain }
+        reactor.state.map { $0.errorMessage }
+            .filter { $0 != nil }
+            .map { $0 as NSError? }
+            .map { $0?.domain ?? "" }
             .subscribe(onNext: alert)
             .disposed(by: disposeBag)
     }

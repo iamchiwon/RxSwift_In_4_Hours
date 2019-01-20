@@ -1,4 +1,6 @@
 PODS:
+  - ReactorKit (1.2.1):
+    - RxSwift (>= 4.0.0)
   - RxAtomic (4.4.0)
   - RxCocoa (4.4.0):
     - RxSwift (~> 4.0)
@@ -7,23 +9,26 @@ PODS:
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
+  - ReactorKit
   - RxCocoa
   - RxSwift
   - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ReactorKit
     - RxAtomic
     - RxCocoa
     - RxSwift
     - SwiftyJSON
 
 SPEC CHECKSUMS:
+  ReactorKit: 8be57f0527ad1ac2963cd5c338274a46a01e57a3
   RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
   RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: cda4c23cf941de230942cd6e11cae9f4b9d01e15
+PODFILE CHECKSUM: a70cb9558b07c800c2135a52ee3f51fbddae85c2
 
 COCOAPODS: 1.5.3
