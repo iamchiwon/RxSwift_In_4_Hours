@@ -10,6 +10,7 @@
 
 #### 동기/비동기
 - 동기
+
 ```swift
 @IBAction func onLoadSync(_ sender: Any) {
     guard let url = URL(string: imageUrl1) else { return }
@@ -19,7 +20,9 @@
     imageView.image = image
 }
 ```
+
 - 비동기
+
 ```swift
 @IBAction func onLoadAsync(_ sender: Any) {
     DispatchQueue.global().async {
@@ -36,7 +39,10 @@
 ```
 
 - 리액티브 : [[wikipedia]Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming)
+
 > In computing, reactive programming is a declarative programming paradigm concerned with data streams and the propagation of change.
+
+<br/>
 
 #### 라이브러리
 
@@ -127,6 +133,9 @@ var disposeBag = DisposeBag()
 - [RxOptional](https://github.com/RxSwiftCommunity/RxOptional)
 - [RxExtension](https://github.com/tokijh/RxSwiftExtensions)
 - [RxSwift Community Projects](https://community.rxswift.org/)
+<br/><br/>
+- [methodInvoked Example](https://gist.github.com/iamchiwon/bd200395a0d0ced65d91d0fa7abe54cb)
+- [DelegateProxy example](https://gist.github.com/iamchiwon/f007d67c8365b612daa99d6f19ad3992)
 
 <br/>
 
