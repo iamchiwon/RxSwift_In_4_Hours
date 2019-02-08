@@ -433,13 +433,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJBCS774N;
+				DEVELOPMENT_TEAM = 77YZ9248DM;
 				INFOPLIST_FILE = RxViewControllerExample/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.itsdcode.dcode.test.RxViewControllerExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iamchiwon.example.RxViewControllerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -452,13 +452,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4KJBCS774N;
+				DEVELOPMENT_TEAM = 77YZ9248DM;
 				INFOPLIST_FILE = RxViewControllerExample/App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.itsdcode.dcode.test.RxViewControllerExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iamchiwon.example.RxViewControllerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
