@@ -44,8 +44,8 @@ class MemberCell : UITableViewCell, Reusable {
         })
     }
     
-    func setData(_ member: Member) {
-        name.text = member.name
+    func setData(_ member: LikableMember) {
+        name.text = member.member.name
         liked.text = member.liked ? "♥︎" : "♡"
     }
 }

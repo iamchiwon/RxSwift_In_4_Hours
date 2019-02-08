@@ -8,13 +8,18 @@
 
 import Foundation
 
-struct Member : Equatable {
+struct Member : Equatable, Codable {
     let id: Int
     let name: String
     let job: String
     let age: Int
     
-    let liked: Bool
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case job
+        case age
+    }
 }
 
 extension Member {

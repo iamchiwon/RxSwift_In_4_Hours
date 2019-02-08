@@ -7,5 +7,6 @@ target 'RxViewControllerExample' do
 
   # Pods for RxViewControllerExample
   pod 'CWUtils'
+  pod 'SwiftyJSON'
 
 end

@@ -25,9 +25,9 @@ class DetailViewController: UIViewController {
     var ageLabel: UILabel!
     var likeButton: UIButton!
     
-    let memberChangedResult = PublishRelay<Member?>()
+    let memberChangedResult = PublishRelay<LikableMember?>()
 
-    let member = BehaviorRelay<Member?>(value: nil)
+    let member = BehaviorRelay<LikableMember?>(value: nil)
     var disposeBag = DisposeBag()
 
     override func viewDidLoad() {
@@ -68,6 +68,7 @@ class DetailViewController: UIViewController {
     
     private func bindView() {
         member.filterNil()
+            .map { $0.member }
             .subscribe(onNext: { [weak self] m in
                 self?.idLabel.text = "\(m.id)"
                 self?.nameLabel.text = m.name
@@ -76,7 +77,8 @@ class DetailViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
-        member.filterNil().map { $0.liked }
+        member.filterNil()
+            .map { $0.liked }
             .map { $0 ? "♥︎" : "♡" }
             .subscribe(onNext: { [weak self] likeMark in
                 self?.likeButton.setTitle(likeMark, for: .normal)
@@ -86,7 +88,7 @@ class DetailViewController: UIViewController {
         likeButton.rx.tap.asObservable()
             .withLatestFrom(member)
             .filterNil()
-            .map { it in Member(id: it.id, name: it.name, job: it.job, age:it.age, liked: !it.liked) }
+            .map { it in LikableMember(member: it.member, liked: !it.liked) }
             .bind(to: member)
             .disposed(by: disposeBag)
         

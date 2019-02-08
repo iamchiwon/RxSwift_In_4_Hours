@@ -24,10 +24,12 @@ PODS:
     - RxCocoa (>= 4.0.0)
     - RxSwift (>= 4.0.0)
   - SnapKit (4.2.0)
+  - SwiftyJSON (4.2.0)
   - Then (2.4.0)
 
 DEPENDENCIES:
   - CWUtils
+  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -39,6 +41,7 @@ SPEC REPOS:
     - RxSwift
     - RxViewController
     - SnapKit
+    - SwiftyJSON
     - Then
 
 SPEC CHECKSUMS:
@@ -50,8 +53,9 @@ SPEC CHECKSUMS:
   RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
   RxViewController: 359bbc2fda373a78605b2735afb0f9f4f3f6c3e4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
 
-PODFILE CHECKSUM: 35f79b14d97828a47607c15e4d4b9b4e8128a6b8
+PODFILE CHECKSUM: 509407310453a3d7931b2e955e55a7a98dbe2fb0
 
 COCOAPODS: 1.6.0

@@ -32,7 +32,7 @@ class ListViewController: UIViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationItem.largeTitleDisplayMode = .automatic
         }
-        
+
         title = "List"
         view.backgroundColor = .white
 
@@ -46,9 +46,11 @@ class ListViewController: UIViewController {
     }
 
     private func bindView() {
-        viewModel.members.bind(to: tableView.rx.items(cellType: MemberCell.self)) { _, data, cell in
-            cell.setData(data)
-        }
+        viewModel.members
+            .observeOn(Schedulers.main)
+            .bind(to: tableView.rx.items(cellType: MemberCell.self)) { _, data, cell in
+                cell.setData(data)
+            }
             .disposed(by: disposeBag)
 
         tableView.rx.itemSelected
@@ -59,7 +61,7 @@ class ListViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
-    private func goDetailPage(_ member: Member) -> Observable<Member> {
+    private func goDetailPage(_ member: LikableMember) -> Observable<LikableMember> {
         let detail = DetailViewController()
         detail.member.accept(member)
         navigationController?.pushViewController(detail, animated: true)
