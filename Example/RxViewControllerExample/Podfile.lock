@@ -1,0 +1,57 @@
+PODS:
+  - CWUtils (0.13.2):
+    - Reusable
+    - RxCocoa
+    - RxOptional
+    - RxSwift
+    - RxViewController
+    - SnapKit
+    - Then
+  - Reusable (4.0.5):
+    - Reusable/Storyboard (= 4.0.5)
+    - Reusable/View (= 4.0.5)
+  - Reusable/Storyboard (4.0.5)
+  - Reusable/View (4.0.5)
+  - RxAtomic (4.4.0)
+  - RxCocoa (4.4.0):
+    - RxSwift (~> 4.0)
+  - RxOptional (3.6.2):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.0):
+    - RxAtomic (~> 4.4)
+  - RxViewController (0.4.0):
+    - RxCocoa (>= 4.0.0)
+    - RxSwift (>= 4.0.0)
+  - SnapKit (4.2.0)
+  - Then (2.4.0)
+
+DEPENDENCIES:
+  - CWUtils
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CWUtils
+    - Reusable
+    - RxAtomic
+    - RxCocoa
+    - RxOptional
+    - RxSwift
+    - RxViewController
+    - SnapKit
+    - Then
+
+SPEC CHECKSUMS:
+  CWUtils: af7c7dfa0d1e829694aac587834f7b9df56761bc
+  Reusable: 188be1a54ac0691bc66e5bb24ec6eb91971b315b
+  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
+  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
+  RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
+  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxViewController: 359bbc2fda373a78605b2735afb0f9f4f3f6c3e4
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
+
+PODFILE CHECKSUM: 35f79b14d97828a47607c15e4d4b9b4e8128a6b8
+
+COCOAPODS: 1.6.0
