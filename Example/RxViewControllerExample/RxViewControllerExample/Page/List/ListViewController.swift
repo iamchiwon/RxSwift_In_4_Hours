@@ -28,9 +28,12 @@ class ListViewController: UIViewController {
     }
 
     private func setupView() {
+        if #available(iOS 11.0, *) {
+            navigationController?.navigationBar.prefersLargeTitles = true
+            navigationItem.largeTitleDisplayMode = .automatic
+        }
+        
         title = "List"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
         view.backgroundColor = .white
 
         tableView = createView(UITableView(), parent: view, setting: { v in
