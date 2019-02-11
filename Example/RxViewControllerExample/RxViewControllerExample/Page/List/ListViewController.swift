@@ -32,12 +32,11 @@ class ListViewController: UIViewController {
             navigationController?.navigationBar.prefersLargeTitles = true
             navigationItem.largeTitleDisplayMode = .automatic
         }
-        
-        title = "List"
+
+        title = "Members"
         view.backgroundColor = .white
 
         tableView = createView(UITableView(), parent: view, setting: { v in
-            v.estimatedRowHeight = 40
             v.rowHeight = UITableView.automaticDimension
             v.register(cellType: MemberCell.self)
         }, constraint: { m in
@@ -46,20 +45,30 @@ class ListViewController: UIViewController {
     }
 
     private func bindView() {
-        viewModel.members.bind(to: tableView.rx.items(cellType: MemberCell.self)) { _, data, cell in
-            cell.setData(data)
-        }
+        viewModel.members
+            .observeOn(Schedulers.main)
+            .bind(to: tableView.rx.items(cellType: MemberCell.self)) { _, data, cell in
+                cell.setData(data)
+            }
             .disposed(by: disposeBag)
 
+        tableView.rx.itemSelected
+            .asDriver()
+            .drive(onNext: { [weak self] indexPath in
+                self?.tableView.deselectRow(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
         tableView.rx.itemSelected
             .map { $0.row }
             .withLatestFrom(viewModel.members, resultSelector: { $1[$0] })
             .flatMap(goDetailPage)
+            .observeOn(Schedulers.main)
             .subscribe(onNext: viewModel.update)
             .disposed(by: disposeBag)
     }
 
-    private func goDetailPage(_ member: Member) -> Observable<Member> {
+    private func goDetailPage(_ member: LikableMember) -> Observable<LikableMember> {
         let detail = DetailViewController()
         detail.member.accept(member)
         navigationController?.pushViewController(detail, animated: true)
