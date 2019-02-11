@@ -8,6 +8,7 @@
 
 import CWUtils
 import Foundation
+import RxCocoa
 import RxSwift
 import SwiftyJSON
 
@@ -17,10 +18,10 @@ struct LikableMember {
 }
 
 class MemberViewModel {
-    let members = BehaviorSubject<[LikableMember]>(value: [])
+    let members = BehaviorRelay<[LikableMember]>(value: [])
 
     func fetch() {
-        let url = "https://my.api.mockaroo.com/example_members.json?key=44ce18f0".url()
+        let url = "https://my.api.mockaroo.com/members_with_avatar.json?key=44ce18f0".url()
         _ = Observable.just(url)
             .map { try Data(contentsOf: $0) }
             .map { try JSON(data: $0) }
@@ -44,16 +45,11 @@ class MemberViewModel {
     }
 
     func update(_ member: LikableMember) {
-        do {
-            let updated = try members.value().map { it -> LikableMember in
-                guard it.member.id == member.member.id else { return it }
-                return member
-            }
-            members.onNext(updated)
-
-        } catch let error {
-            ELog(error)
+        let updated = members.value.map { it -> LikableMember in
+            guard it.member.id == member.member.id else { return it }
+            return member
         }
+        members.accept(updated)
     }
 
     func like(_ id: Int) {
@@ -65,15 +61,10 @@ class MemberViewModel {
     }
 
     private func updateLiked(_ id: Int, to liked: Bool) {
-        do {
-            let updated = try members.value().map { it -> LikableMember in
-                guard it.member.id == id else { return it }
-                return LikableMember(member: it.member, liked: liked)
-            }
-            members.onNext(updated)
-
-        } catch let error {
-            ELog(error)
+        let updated = members.value.map { it -> LikableMember in
+            guard it.member.id == id else { return it }
+            return LikableMember(member: it.member, liked: liked)
         }
+        members.accept(updated)
     }
 }

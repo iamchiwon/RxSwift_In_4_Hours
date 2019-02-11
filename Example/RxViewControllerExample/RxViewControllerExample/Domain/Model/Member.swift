@@ -11,15 +11,9 @@ import Foundation
 struct Member : Equatable, Codable {
     let id: Int
     let name: String
+    let avatar: String
     let job: String
     let age: Int
-    
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case job
-        case age
-    }
 }
 
 extension Member {
