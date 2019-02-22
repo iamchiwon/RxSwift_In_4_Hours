@@ -1,6 +1,6 @@
 PODS:
-  - RxAtomic (4.4.0)
-  - RxSwift (4.4.0):
+  - RxAtomic (4.4.1)
+  - RxSwift (4.4.1):
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
@@ -12,9 +12,9 @@ SPEC REPOS:
     - RxSwift
 
 SPEC CHECKSUMS:
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
+  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
 
 PODFILE CHECKSUM: e53747100d1cfbed67d7643c20a80f85415ff8e3
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

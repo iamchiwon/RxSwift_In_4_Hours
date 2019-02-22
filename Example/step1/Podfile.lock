@@ -1,16 +1,16 @@
 PODS:
   - Bolts-Swift (1.4.0)
-  - PromiseKit (6.7.1):
-    - PromiseKit/CorePromise (= 6.7.1)
-    - PromiseKit/Foundation (= 6.7.1)
-    - PromiseKit/UIKit (= 6.7.1)
-  - PromiseKit/CorePromise (6.7.1)
-  - PromiseKit/Foundation (6.7.1):
+  - PromiseKit (6.8.3):
+    - PromiseKit/CorePromise (= 6.8.3)
+    - PromiseKit/Foundation (= 6.8.3)
+    - PromiseKit/UIKit (= 6.8.3)
+  - PromiseKit/CorePromise (6.8.3)
+  - PromiseKit/Foundation (6.8.3):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.7.1):
+  - PromiseKit/UIKit (6.8.3):
     - PromiseKit/CorePromise
-  - RxAtomic (4.4.0)
-  - RxSwift (4.4.0):
+  - RxAtomic (4.4.1)
+  - RxSwift (4.4.1):
     - RxAtomic (~> 4.4)
 
 DEPENDENCIES:
@@ -27,10 +27,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Bolts-Swift: 650d72e8017721b1a6bbe43d542c4578f8e5ba6f
-  PromiseKit: ef376fb8b4e92edfeb66bd403b983eaa07fbde0c
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
+  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
+  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
 
 PODFILE CHECKSUM: 4dac57814f899b89563af2bc3ff1e9283724e53a
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

@@ -177,7 +177,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwiftIn4Hours/Pods-RxSwiftIn4Hours-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RxSwiftIn4Hours/Pods-RxSwiftIn4Hours-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts-Swift/BoltsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
@@ -194,7 +194,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxSwiftIn4Hours/Pods-RxSwiftIn4Hours-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxSwiftIn4Hours/Pods-RxSwiftIn4Hours-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A96519FA124A0BE820FA61E6 /* [CP] Check Pods Manifest.lock */ = {
