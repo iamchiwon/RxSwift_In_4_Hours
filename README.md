@@ -143,7 +143,7 @@ var disposeBag = DisposeBag()
 - [RxBlocking](https://github.com/ReactiveX/RxSwift/tree/master/RxBlocking)
 - [RxTest](https://github.com/ReactiveX/RxSwift/tree/master/RxTest)
 - [Video] [Testing an operator with TestScheduler - RxSwift](https://www.youtube.com/watch?v=HKigVK1eqwE)
-- [Video] [Understanding RxSwift using RxTests — Yvette Cook](https://www.youtube.com/watch?v=FgbTenGH-P0&t=751s)
+- [Video] [Understanding RxSwift using RxTests — Yvette Cook](https://www.youtube.com/watch?v=FgbTenGH-P0)
 - [Article] [Testing Your RxSwift Code](https://www.raywenderlich.com/7408-testing-your-rxswift-code)
 
 <br/>
