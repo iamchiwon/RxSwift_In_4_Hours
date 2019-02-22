@@ -139,6 +139,15 @@ var disposeBag = DisposeBag()
 
 <br/>
 
+### 5. 테스트
+- [RxBlocking](https://github.com/ReactiveX/RxSwift/tree/master/RxBlocking)
+- [RxTest](https://github.com/ReactiveX/RxSwift/tree/master/RxTest)
+- [Video] [Testing an operator with TestScheduler - RxSwift](https://www.youtube.com/watch?v=HKigVK1eqwE)
+- [Video] [Understanding RxSwift using RxTests — Yvette Cook](https://www.youtube.com/watch?v=FgbTenGH-P0&t=751s)
+- [Article] [Testing Your RxSwift Code](https://www.raywenderlich.com/7408-testing-your-rxswift-code)
+
+<br/>
+
 ## 세미나 영상보기
 - [(유튜브) RxSwift 4시간에 끝내기](https://www.youtube.com/watch?v=2uumx7Vzidc&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq)
 
