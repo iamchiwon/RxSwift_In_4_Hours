@@ -55,7 +55,7 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
 - 간단한 생성 : `just`, `from`
 - 필터링 : `filter`, `take`
 - 데이터 변형 : `map`, `flatMap`
-	- [A Decision Tree of Observable Operators](http://reactivex.io/documentation/ko/operators.html)
+- 그 외 : [A Decision Tree of Observable Operators](http://reactivex.io/documentation/ko/operators.html)
 - Marble Diagram
   - [http://rxmarbles.com/](http://rxmarbles.com/)
   - [http://reactivex.io/documentation/operators.html](http://reactivex.io/documentation/operators.html)
