@@ -4,131 +4,84 @@
 
 <br/>
 
+## Preface
+
+요즘 관심이 높은 RxSwift!
+
+RxSwift는 Swift에 ReactiveX를 적용시켜 비동기 프로그래밍을 직관적으로 작성할 수 있도록 도와주는 **라이브러리**입니다. 
+
+즉, RxSwift는 도구입니다. 하지만 높은 러닝커브에 쉽게 접근하지 못하는 분이 많습니다.<br/>
+도구를 이용하려고 배우고 노력하는 시간이 너무 큰 것은 배보다 배꼽이 더 큰 격입니다.<br/>
+RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 프로젝트에 적용하는 것이 *현실주의 프로그래머들에게는* 더 중요합니다.
+
+<br/>
+
 ## Contents
 
-### 1. 기본
+### 1. 개념잡기
 
 #### 동기/비동기
-- 동기
+- Blocking / Non-Blocking
+- Sync / Async
+- Async Result 의 처리
+	- Closure Callback
+	- Delegate
+	- 나중에 Wrapper
 
-```swift
-@IBAction func onLoadSync(_ sender: Any) {
-    guard let url = URL(string: imageUrl1) else { return }
-    guard let data = try? Data(contentsOf: url) else { return }
-    
-    let image = UIImage(data: data)
-    imageView.image = image
-}
-```
+#### 나중에 Wrapper
+- [PromiseKit](https://github.com/mxcl/PromiseKit)
+- [Bolts](https://github.com/BoltsFramework/Bolts-Swift)
+- [RxSwift](https://github.com/ReactiveX/RxSwift)
 
-- 비동기
+<br/>
+	
+### 2. 기본 사용법
 
-```swift
-@IBAction func onLoadAsync(_ sender: Any) {
-    DispatchQueue.global().async {
-        guard let url = URL(string: self.imageUrl1) else { return }
-        guard let data = try? Data(contentsOf: url) else { return }
-        
-        let image = UIImage(data: data)
-        
-        DispatchQueue.main.async {
-            self.imageView.image = image
-        }
-    }
-}
-```
-
-- 리액티브 : [[wikipedia]Reactive programming](https://en.wikipedia.org/wiki/Reactive_programming)
-
-> In computing, reactive programming is a declarative programming paradigm concerned with data streams and the propagation of change.
+#### Observable
+- Observable `create`
+- subscribe 로 데이터 사용
+- Disposable 로 작업 취소
+- stream의 life-cycle
+	- Subscribed
+	- Next
+	- Completed / Error
+	- Disposabled
 
 <br/>
 
-#### 라이브러리
+### 3. Sugar API
 
-- PromiseKit
-
-```swift
-promiseLoadImage(from: loadingImageUrl)
-    .done { image in
-        self.imageView.image = image
-    }.catch { error in
-        print(error.localizedDescription)
-}
-```
-
-- Reactive X
-	- [http://reactivex.io/](http://reactivex.io/)
-	- [RxSwift](https://github.com/ReactiveX/RxSwift)
-
-```swift
-_ = rxswiftLoadImage(from: loadingImageUrl)
-    .observeOn(MainScheduler.instance)
-    .subscribe({ result in
-        switch result {
-        case let .next(image):
-            self.imageView.image = image
-
-        case let .error(err):
-            print(err.localizedDescription)
-
-        case .completed:
-            break
-        }
-    })
-```
-
-#### Disposable/DisposeBag
-```swift
-var disposable: Disposable?
-disposable?.dispose()
-```
-```swift
-var disposeBag = DisposeBag()
-```
-
-<br/>
-
-### 2. 사용법
-- just, from
-- map, flatMap
-- filter
-- operators
-  - 생성
-  - 변환
-  - 필터링
-  - 결합
-  - 오류처리
-  - 조건과 불린 연산자
-  - 수학과 집계 연산자
-  - 역압 연산자
-  - 연결
-  - Observable 변환
-  - [A Decision Tree of Observable Operators](http://reactivex.io/documentation/ko/operators.html)
-- marbles
+#### Operators
+- 간단한 생성 : `just`, `from`
+- 필터링 : `filter`, `take`
+- 데이터 변형 : `map`, `flatMap`
+	- [A Decision Tree of Observable Operators](http://reactivex.io/documentation/ko/operators.html)
+- Marble Diagram
   - [http://rxmarbles.com/](http://rxmarbles.com/)
   - [http://reactivex.io/documentation/operators.html](http://reactivex.io/documentation/operators.html)
   - [https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8](https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8)
-- scheduler
-- next, error, completed
-- RxCocoa
-  - Driver
-  - binding
+
+#### Schedulers
+- Thread, Concurrent, Parallel
+	- [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html)
+- `observeOn`, `subscribeOn`
+
+#### Subject
+- Data Control
+- Hot Observable / Cold Observable
 
 <br/>
 
-### 3. 응용
-- Subject
-- RxCocoa
-	- Driver
-	- Binding
-	- Relay
-- Unfinished Observable / Memory Leak
-	- (참조) [클로져와 메모리 해제 실험](https://iamchiwon.github.io/2018/08/13/closure-mem/)
+### 4. RxCocoa
+
+- UI 작업의 특징
+- Observable / Driver
+- Subject / Relay
 
 <br/>
 
-### 4. 확장
+### 5. Extension
+
 - [RxViewController](https://github.com/devxoul/RxViewController)
 - [RxOptional](https://github.com/RxSwiftCommunity/RxOptional)
 - [RxExtension](https://github.com/tokijh/RxSwiftExtensions)
@@ -139,7 +92,8 @@ var disposeBag = DisposeBag()
 
 <br/>
 
-### 5. 테스트
+### 6. Test
+
 - [RxBlocking](https://github.com/ReactiveX/RxSwift/tree/master/RxBlocking)
 - [RxTest](https://github.com/ReactiveX/RxSwift/tree/master/RxTest)
 - [Video] [Testing an operator with TestScheduler - RxSwift](https://www.youtube.com/watch?v=HKigVK1eqwE)
@@ -148,8 +102,12 @@ var disposeBag = DisposeBag()
 
 <br/>
 
-## 세미나 영상보기
-- [(유튜브) RxSwift 4시간에 끝내기](https://www.youtube.com/watch?v=2uumx7Vzidc&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq)
+## References
+
+- [Official] [ReactiveX](http://reactivex.io/)
+- [Video] [RxSwift 4시간에 끝내기](https://www.youtube.com/watch?v=2uumx7Vzidc&list=PL03rJBlpwTaAh5zfc8KWALc3ADgugJwjq)
+- Unfinished Observable / Memory Leak
+	- (참조) [클로져와 메모리 해제 실험](https://iamchiwon.github.io/2018/08/13/closure-mem/)
 
 <br/>
 
@@ -157,3 +115,5 @@ var disposeBag = DisposeBag()
 
 ![](docs/cc_license.png)
 <br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by/2.0/kr/">크리에이티브 커먼즈 저작자표시 2.0 대한민국 라이선스</a>에 따라 이용할 수 있습니다.
+
+<br/>
