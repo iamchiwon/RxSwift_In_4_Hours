@@ -25,6 +25,7 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
 	- Sync / Async
 	- Thread, Concurrent, Parallel
 	- [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html)
+	- pthread, Thread, Operation, OperationQueue, GCD
 - Async Result 의 처리
 	- Closure Callback
 	- Delegate
