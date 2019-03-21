@@ -22,6 +22,8 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
 
 #### 동기/비동기
 - Blocking / Non-Blocking
+	- Thread, Concurrent, Parallel
+	- [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html)
 - Sync / Async
 - Async Result 의 처리
 	- Closure Callback
@@ -62,8 +64,7 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
   - [https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8](https://itunes.apple.com/us/app/rxmarbles/id1087272442?mt=8)
 
 #### Schedulers
-- Thread, Concurrent, Parallel
-	- [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html)
+- DispatchQueue
 - `observeOn`, `subscribeOn`
 
 #### Subject
