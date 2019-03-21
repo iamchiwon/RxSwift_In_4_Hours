@@ -22,9 +22,9 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
 
 #### 동기/비동기
 - Blocking / Non-Blocking
+	- Sync / Async
 	- Thread, Concurrent, Parallel
 	- [Concurrency Programming Guide](https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html)
-- Sync / Async
 - Async Result 의 처리
 	- Closure Callback
 	- Delegate
