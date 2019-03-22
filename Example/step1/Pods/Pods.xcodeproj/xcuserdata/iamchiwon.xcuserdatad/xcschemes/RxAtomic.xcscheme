@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "173C8F6F932F5D34DA3B4D84B3ADFB07"
+               BuildableName = "RxAtomic.framework"
                BlueprintName = "RxAtomic"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "RxAtomic.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

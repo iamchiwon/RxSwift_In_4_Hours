@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D170E3842432948AB21129E483F375D0"
+               BuildableName = "PromiseKit.framework"
                BlueprintName = "PromiseKit"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "PromiseKit.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

@@ -9,9 +9,9 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.3):
     - PromiseKit/CorePromise
-  - RxAtomic (4.4.1)
-  - RxSwift (4.4.1):
-    - RxAtomic (~> 4.4)
+  - RxAtomic (4.4.2)
+  - RxSwift (4.4.2):
+    - RxAtomic (>= 4.4.2, ~> 4.4)
 
 DEPENDENCIES:
   - Bolts-Swift
@@ -28,9 +28,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Bolts-Swift: 650d72e8017721b1a6bbe43d542c4578f8e5ba6f
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
-  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
-  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
+  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
+  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
 
 PODFILE CHECKSUM: 4dac57814f899b89563af2bc3ff1e9283724e53a
 
-COCOAPODS: 1.6.0
+COCOAPODS: 1.6.1
