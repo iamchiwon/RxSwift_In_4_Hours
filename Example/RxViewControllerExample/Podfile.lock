@@ -1,30 +1,39 @@
 PODS:
-  - CWUtils (0.13.3):
+  - CWUtils (0.14.0):
+    - Kingfisher
     - Reusable
     - RxCocoa
     - RxOptional
     - RxSwift
+    - RxSwiftExt
     - RxViewController
     - SnapKit
     - Then
+  - Kingfisher (5.3.1)
   - Reusable (4.0.5):
     - Reusable/Storyboard (= 4.0.5)
     - Reusable/View (= 4.0.5)
   - Reusable/Storyboard (4.0.5)
   - Reusable/View (4.0.5)
-  - RxAtomic (4.4.2)
-  - RxCocoa (4.4.2):
+  - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxOptional (3.6.2):
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
-  - RxSwift (4.4.2):
-    - RxAtomic (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
+  - RxSwiftExt (3.4.0):
+    - RxSwiftExt/Core (= 3.4.0)
+    - RxSwiftExt/RxCocoa (= 3.4.0)
+  - RxSwiftExt/Core (3.4.0):
+    - RxSwift (~> 4.0)
+  - RxSwiftExt/RxCocoa (3.4.0):
+    - RxCocoa (~> 4.0)
+    - RxSwiftExt/Core
   - RxViewController (0.4.1):
     - RxCocoa (>= 4.0.0)
     - RxSwift (>= 4.0.0)
   - SnapKit (4.2.0)
-  - SwiftyJSON (4.2.0)
+  - SwiftyJSON (5.0.0)
   - Then (2.4.0)
 
 DEPENDENCIES:
@@ -34,28 +43,30 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - CWUtils
+    - Kingfisher
     - Reusable
-    - RxAtomic
     - RxCocoa
     - RxOptional
     - RxSwift
+    - RxSwiftExt
     - RxViewController
     - SnapKit
     - SwiftyJSON
     - Then
 
 SPEC CHECKSUMS:
-  CWUtils: 08fdcb46cc4338dbcdc05a2b5b72fe8f7cb219e2
+  CWUtils: 66949a3bee0e81c1154c40bfd3699727f7b4b8dc
+  Kingfisher: d9e7e0b209b59b8f9873aa2f37654e81a7beea51
   Reusable: 188be1a54ac0691bc66e5bb24ec6eb91971b315b
-  RxAtomic: d00e97c10db88c6f08540e0bf2752fc5a2404167
-  RxCocoa: 477990dc3b4c3ff55fb0ac77e1cc06244e0aaec8
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
-  RxSwift: 74c29b693c8e42b0f64400e8b06564575742d649
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  RxSwiftExt: 01f8ecbeeb355698e9c75365ebe908b00dacf45d
   RxViewController: e93e7c233d5b5b62c32231d69726d55f54081bc6
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
 
 PODFILE CHECKSUM: 509407310453a3d7931b2e955e55a7a98dbe2fb0
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.0.beta.3
