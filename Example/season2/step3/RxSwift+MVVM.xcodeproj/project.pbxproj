@@ -3,15 +3,20 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A168F0A022F7FB2C00A9E178 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F09F22F7FB2C00A9E178 /* AppDelegate.swift */; };
-		A168F0A222F7FB2C00A9E178 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F0A122F7FB2C00A9E178 /* ViewController.swift */; };
+		A168F0A222F7FB2C00A9E178 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F0A122F7FB2C00A9E178 /* MenuViewController.swift */; };
 		A168F0A522F7FB2C00A9E178 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A168F0A322F7FB2C00A9E178 /* Main.storyboard */; };
 		A168F0A722F7FB2E00A9E178 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A168F0A622F7FB2E00A9E178 /* Assets.xcassets */; };
 		A168F0AA22F7FB2E00A9E178 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A168F0A822F7FB2E00A9E178 /* LaunchScreen.storyboard */; };
+		A168F0B622FADE5B00A9E178 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F0B522FADE5B00A9E178 /* APIService.swift */; };
+		A168F0B822FADE7000A9E178 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F0B722FADE7000A9E178 /* Model.swift */; };
+		A168F0BA22FAF3CC00A9E178 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F0B922FAF3CC00A9E178 /* Utils.swift */; };
+		A168F0BC22FAF9B800A9E178 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F0BB22FAF9B800A9E178 /* MenuItemTableViewCell.swift */; };
+		A168F0BE22FAFAC300A9E178 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A168F0BD22FAFAC300A9E178 /* OrderViewController.swift */; };
 		E2AFEEC81F02AC78E0249DDC /* Pods_RxSwift_MVVM.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3442FB936BB096840300742 /* Pods_RxSwift_MVVM.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,11 +24,16 @@
 		606131A3A3F3F4D6822F8E43 /* Pods-RxSwift+MVVM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwift+MVVM.debug.xcconfig"; path = "Target Support Files/Pods-RxSwift+MVVM/Pods-RxSwift+MVVM.debug.xcconfig"; sourceTree = "<group>"; };
 		A168F09C22F7FB2C00A9E178 /* RxSwift+MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "RxSwift+MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A168F09F22F7FB2C00A9E178 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A168F0A122F7FB2C00A9E178 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A168F0A122F7FB2C00A9E178 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A168F0A422F7FB2C00A9E178 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A168F0A622F7FB2E00A9E178 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A168F0A922F7FB2E00A9E178 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A168F0AB22F7FB2E00A9E178 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A168F0B522FADE5B00A9E178 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		A168F0B722FADE7000A9E178 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A168F0B922FAF3CC00A9E178 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A168F0BB22FAF9B800A9E178 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
+		A168F0BD22FAFAC300A9E178 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		C566DF4A5E7D8CFD17BE3140 /* Pods-RxSwift+MVVM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwift+MVVM.release.xcconfig"; path = "Target Support Files/Pods-RxSwift+MVVM/Pods-RxSwift+MVVM.release.xcconfig"; sourceTree = "<group>"; };
 		D3442FB936BB096840300742 /* Pods_RxSwift_MVVM.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwift_MVVM.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -70,7 +80,12 @@
 			isa = PBXGroup;
 			children = (
 				A168F09F22F7FB2C00A9E178 /* AppDelegate.swift */,
-				A168F0A122F7FB2C00A9E178 /* ViewController.swift */,
+				A168F0B922FAF3CC00A9E178 /* Utils.swift */,
+				A168F0BB22FAF9B800A9E178 /* MenuItemTableViewCell.swift */,
+				A168F0A122F7FB2C00A9E178 /* MenuViewController.swift */,
+				A168F0BD22FAFAC300A9E178 /* OrderViewController.swift */,
+				A168F0B522FADE5B00A9E178 /* APIService.swift */,
+				A168F0B722FADE7000A9E178 /* Model.swift */,
 				A168F0A322F7FB2C00A9E178 /* Main.storyboard */,
 				A168F0A622F7FB2E00A9E178 /* Assets.xcassets */,
 				A168F0A822F7FB2E00A9E178 /* LaunchScreen.storyboard */,
@@ -85,7 +100,6 @@
 				606131A3A3F3F4D6822F8E43 /* Pods-RxSwift+MVVM.debug.xcconfig */,
 				C566DF4A5E7D8CFD17BE3140 /* Pods-RxSwift+MVVM.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -204,8 +218,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A168F0A222F7FB2C00A9E178 /* ViewController.swift in Sources */,
+				A168F0BA22FAF3CC00A9E178 /* Utils.swift in Sources */,
+				A168F0A222F7FB2C00A9E178 /* MenuViewController.swift in Sources */,
+				A168F0B622FADE5B00A9E178 /* APIService.swift in Sources */,
+				A168F0BE22FAFAC300A9E178 /* OrderViewController.swift in Sources */,
+				A168F0BC22FAF9B800A9E178 /* MenuItemTableViewCell.swift in Sources */,
 				A168F0A022F7FB2C00A9E178 /* AppDelegate.swift in Sources */,
+				A168F0B822FADE7000A9E178 /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +374,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6C8BWW65M;
 				INFOPLIST_FILE = "RxSwift+MVVM/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,7 +382,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bearfried.tutorial.RxSwift-MVVM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -374,6 +394,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = V6C8BWW65M;
 				INFOPLIST_FILE = "RxSwift+MVVM/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,7 +402,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bearfried.tutorial.RxSwift-MVVM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
