@@ -58,8 +58,7 @@ class OrderViewController: UIViewController {
             .map { (price: Int) -> (price: Int, vat: Int) in
                 (price, Int(Float(price) * 0.1 / 10 + 0.5) * 10)
             }
-            .do(onNext: { _ in print("계산했다.") })
-            .publish()
+            .share(replay: 1, scope: .whileConnected)
 
         itemsPriceAndVat
             .map { $0.price.currencyKR() }
@@ -77,9 +76,7 @@ class OrderViewController: UIViewController {
             .bind(to: totalPrice.rx.text)
             .disposed(by: disposeBag)
         
-        itemsPriceAndVat
-            .connect()
-            .disposed(by: disposeBag)
+        orderedMenuItems.accept(orderedMenuItems.value)
     }
 
     func heightWithConstrainedWidth(text: String, width: CGFloat, font: UIFont) -> CGFloat {

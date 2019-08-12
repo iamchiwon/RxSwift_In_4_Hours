@@ -55,7 +55,6 @@ class MenuViewController: UIViewController {
 
                     var menuItems = self.menuItems$.value
                     menuItems[index] = (item.menu, count)
-                    print(menuItems[index])
                     self.menuItems$.accept(menuItems)
                 }
             }
