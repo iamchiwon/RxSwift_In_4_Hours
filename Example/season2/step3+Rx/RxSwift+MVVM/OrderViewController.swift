@@ -6,6 +6,9 @@
 //  Copyright © 2019 iamchiwon. All rights reserved.
 //
 
+import RxCocoa
+import RxSwift
+import RxViewController
 import UIKit
 
 class OrderViewController: UIViewController {
@@ -13,21 +16,71 @@ class OrderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateOrderInfos()
-        updateTextViewHeight()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.isNavigationBarHidden = true
+        setupBindings()
     }
 
     // MARK: - UI Logic
+
+    func setupBindings() {
+        rx.viewWillAppear
+            .take(1)
+            .subscribe(onNext: { [weak navigationController] _ in
+                navigationController?.isNavigationBarHidden = false
+            })
+            .disposed(by: disposeBag)
+
+        rx.viewWillDisappear
+            .take(1)
+            .subscribe(onNext: { [weak navigationController] _ in
+                navigationController?.isNavigationBarHidden = true
+            })
+            .disposed(by: disposeBag)
+
+        ordersList.rx.text.orEmpty
+            .map { [weak self] text in
+                let width = self?.ordersList.bounds.width ?? 0
+                let font = self?.ordersList.font ?? UIFont.systemFont(ofSize: 20)
+                let height = self?.heightWithConstrainedWidth(text: text, width: width, font: font)
+                return height ?? 0
+            }
+            .bind(to: ordersListHeight.rx.constant)
+            .disposed(by: disposeBag)
+
+        orderedMenuItems
+            .map { $0.map { "\($0.menu.name) \($0.count)개" }.joined(separator: "\n") }
+            .bind(to: ordersList.rx.text)
+            .disposed(by: disposeBag)
+
+        let itemsPriceAndVat = orderedMenuItems
+            .map { items in
+                items.map { $0.menu.price * $0.count }.reduce(0, +)
+            }
+            .map { (price: Int) -> (price: Int, vat: Int) in
+                (price, Int(Float(price) * 0.1 / 10 + 0.5) * 10)
+            }
+            .do(onNext: { _ in print("계산했다.") })
+            .publish()
+
+        itemsPriceAndVat
+            .map { $0.price.currencyKR() }
+            .bind(to: itemsPrice.rx.text)
+            .disposed(by: disposeBag)
+
+        itemsPriceAndVat
+            .map { $0.vat.currencyKR() }
+            .bind(to: vatPrice.rx.text)
+            .disposed(by: disposeBag)
+
+        itemsPriceAndVat
+            .map { $0.price + $0.vat }
+            .map { $0.currencyKR() }
+            .bind(to: totalPrice.rx.text)
+            .disposed(by: disposeBag)
+        
+        itemsPriceAndVat
+            .connect()
+            .disposed(by: disposeBag)
+    }
 
     func heightWithConstrainedWidth(text: String, width: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
@@ -35,27 +88,10 @@ class OrderViewController: UIViewController {
         return boundingBox.height
     }
 
-    func updateTextViewHeight() {
-        let height = heightWithConstrainedWidth(text: ordersList.text,
-                                                width: ordersList.bounds.width,
-                                                font: ordersList.font ?? UIFont.systemFont(ofSize: 20))
-        ordersListHeight.constant = height + 40
-    }
-
     // MARK: - Business Logic
 
-    var orderedMenuItems: [(menu: MenuItem, count: Int)] = []
-
-    func updateOrderInfos() {
-        let allItemsText = orderedMenuItems.map { "\($0.menu.name) \($0.count)개" }.joined(separator: "\n")
-        let allItemsPrice = orderedMenuItems.map { $0.menu.price * $0.count }.reduce(0, +)
-        let allVatPrice = Int(Float(allItemsPrice) * 0.1 / 10 + 0.5) * 10
-
-        ordersList.text = allItemsText
-        itemsPrice.text = allItemsPrice.currencyKR()
-        vatPrice.text = allVatPrice.currencyKR()
-        totalPrice.text = (allItemsPrice + allVatPrice).currencyKR()
-    }
+    var disposeBag = DisposeBag()
+    let orderedMenuItems: BehaviorRelay<[(menu: MenuItem, count: Int)]> = BehaviorRelay(value: [])
 
     // MARK: - Interface Builder
 

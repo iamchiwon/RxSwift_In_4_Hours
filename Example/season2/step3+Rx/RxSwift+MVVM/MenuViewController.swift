@@ -24,8 +24,8 @@ class MenuViewController: UIViewController {
         let identifier = segue.identifier ?? ""
         if identifier == "OrderViewController",
             let orderVC = segue.destination as? OrderViewController {
-            let items = menuItems$.value
-            orderVC.orderedMenuItems = items.filter { $0.count > 0 }
+            let items = menuItems$.value.filter { $0.count > 0 }
+            orderVC.orderedMenuItems.accept(items)
         }
     }
 
