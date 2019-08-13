@@ -12,10 +12,4 @@ target 'RxSwift+MVVM' do
   pod 'RxOptional'
   pod 'RxViewController'
 
-  target 'RxSwift+MVVMTests' do
-    inherit! :search_paths
-    pod 'RxTest'
-    pod 'RxBlocking'
-  end
-
 end

@@ -24,4 +24,10 @@ class MenuItemTableViewCell: UITableViewCell {
     @IBAction func onDecreaseCount() {
         onCountChanged(-1)
     }
+    
+    func setData(_ item: ViewMenu) {
+        title.text = item.name
+        price.text = "\(item.price)"
+        count.text = "\(item.count)"
+    }
 }
