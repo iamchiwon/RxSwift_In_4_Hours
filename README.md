@@ -90,7 +90,7 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
 
 2. Refactoring to MVVM
 3. MVVM-C
-        - [MVVM-C Example](https://github.com/uptechteam/Coordinator-MVVM-Rx-Example)
+	- [Example](https://github.com/uptechteam/Coordinator-MVVM-Rx-Example)
 
 <br/>
 <hr/>
