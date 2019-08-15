@@ -12,107 +12,126 @@ import RxViewController
 import UIKit
 
 class MenuViewController: UIViewController {
-    let viewModel = MenuViewModel()
+    let viewModel: MenuViewModelType
     var disposeBag = DisposeBag()
 
     // MARK: - Life Cycle
 
+    init(viewModel: MenuViewModelType = MenuViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        viewModel = MenuViewModel()
+        super.init(coder: aDecoder)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.refreshControl = UIRefreshControl()
         setupBindings()
-        viewModel.viewDidLoad()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let identifier = segue.identifier ?? ""
-        if identifier == "OrderViewController",
+        if identifier == OrderViewController.identifier,
+            let selectedMenus = sender as? [ViewMenu],
             let orderVC = segue.destination as? OrderViewController {
-            let orderViewModel = OrderViewModel()
+            let orderViewModel = OrderViewModel(selectedMenus)
             orderVC.viewModel = orderViewModel
-
-            viewModel
-                .allSelectedMenus()
-                .bind(to: orderViewModel.selectedMenus)
-                .disposed(by: disposeBag)
         }
     }
 
     // MARK: - UI Binding
 
     func setupBindings() {
-        // 당겨서 새로고침
-        tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.rx
+        // ------------------------------
+        //     INPUT
+        // ------------------------------
+
+        // 처음 로딩할 때 하고, 당겨서 새로고침 할 때
+        let firstLoad = rx.viewWillAppear
+            .take(1)
+            .map { _ in () }
+        let reload = tableView.refreshControl?.rx
             .controlEvent(.valueChanged)
-            .subscribe(onNext: viewModel.fetchMenu)
-            .disposed(by: disposeBag)
+            .map { _ in () } ?? Observable.just(())
 
-        // 테이블뷰 아이템들
-        viewModel.allMenus()
-            .bind(to: tableView.rx.items(cellIdentifier: MenuItemTableViewCell.identifier,
-                                         cellType: MenuItemTableViewCell.self)) {
-                index, item, cell in
-
-                cell.setData(item)
-                cell.onCountChanged = { [weak self] inc in
-                    self?.viewModel.increaseMenuCount(index: index, increasement: inc)
-                }
-            }
-            .disposed(by: disposeBag)
-
-        // 선택된 아이템 총개수
-        viewModel.totalSelectedItemsCount()
-            .bind(to: itemCountLabel.rx.text)
-            .disposed(by: disposeBag)
-
-        // 선택된 아이템 총가격
-        viewModel.totalPrice()
-            .bind(to: totalPrice.rx.text)
+        Observable.merge([firstLoad, reload])
+            .bind(to: viewModel.fetchMenus)
             .disposed(by: disposeBag)
 
         // 처음 보일때 하고 clear 버튼 눌렀을 때
         let viewDidAppear = rx.viewWillAppear.map { _ in () }
         let whenClearTap = clearButton.rx.tap.map { _ in () }
         Observable.merge([viewDidAppear, whenClearTap])
-            .subscribe(onNext: { [weak self] _ in
-                self?.viewModel.clearSelections()
-            })
+            .bind(to: viewModel.clearSelections)
             .disposed(by: disposeBag)
 
         // order 버튼 눌렀을 때
         orderButton.rx.tap
-            .flatMap(viewModel.orderMenus)
-            .subscribe(onNext: { [weak self] identifier in
-                self?.performSegue(withIdentifier: identifier, sender: nil)
+            .bind(to: viewModel.makeOrder)
+            .disposed(by: disposeBag)
+
+        // ------------------------------
+        //     NAVIGATION
+        // ------------------------------
+
+        // 페이지 이동
+        viewModel.showOrderPage
+            .subscribe(onNext: { [weak self] selectedMenus in
+                self?.performSegue(withIdentifier: OrderViewController.identifier,
+                                   sender: selectedMenus)
             })
             .disposed(by: disposeBag)
 
+        // ------------------------------
+        //     OUTPUT
+        // ------------------------------
+
         // 에러 처리
-        viewModel.errors()
-            .subscribe(onNext: { [weak self] err in
-                let error = err as NSError
-                self?.showAlert("Order Fail", error.domain)
+        viewModel.errorMessage
+            .map { $0.domain }
+            .subscribe(onNext: { [weak self] message in
+                self?.showAlert("Order Fail", message)
             })
             .disposed(by: disposeBag)
 
         // 액티비티 인디케이터
-        viewModel.isActivating()
+        viewModel.activated
             .map { !$0 }
+            .do(onNext: { [weak self] finished in
+                if finished {
+                    self?.tableView.refreshControl?.endRefreshing()
+                }
+            })
             .bind(to: activityIndicator.rx.isHidden)
             .disposed(by: disposeBag)
 
-        viewModel.isActivating()
-            .filter { !$0 }
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] _ in self?.tableView.refreshControl?.endRefreshing()
-            })
-            .disposed(by: disposeBag)
-    }
+        // 테이블뷰 아이템들
+        viewModel.allMenus
+            .bind(to: tableView.rx.items(cellIdentifier: MenuItemTableViewCell.identifier,
+                                         cellType: MenuItemTableViewCell.self)) {
+                _, item, cell in
 
-    func showAlert(_ title: String, _ message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertVC, animated: true, completion: nil)
+                cell.onData.onNext(item)
+                cell.onChanged
+                    .map { (item, $0) }
+                    .bind(to: self.viewModel.increaseMenuCount)
+                    .disposed(by: cell.disposeBag)
+            }
+            .disposed(by: disposeBag)
+
+        // 선택된 아이템 총개수
+        viewModel.totalSelectedCountText
+            .bind(to: itemCountLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        // 선택된 아이템 총가격
+        viewModel.totalPriceText
+            .bind(to: totalPrice.rx.text)
+            .disposed(by: disposeBag)
     }
 
     // MARK: - InterfaceBuilder Links

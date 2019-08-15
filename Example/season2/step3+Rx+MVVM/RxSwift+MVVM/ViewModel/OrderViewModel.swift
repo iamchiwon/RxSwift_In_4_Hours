@@ -7,43 +7,34 @@
 //
 
 import Foundation
-import RxRelay
 import RxSwift
 
-class OrderViewModel {
-    var disposeBag = DisposeBag()
+protocol OrderViewModelType {
+    var orderedList: Observable<String> { get }
+    var itemsPriceText: Observable<String> { get }
+    var itemsVatText: Observable<String> { get }
+    var totalPriceText: Observable<String> { get }
+}
 
-    let selectedMenus = BehaviorRelay<[ViewMenu]>(value: [])
+class OrderViewModel: OrderViewModelType {
+    let orderedList: Observable<String>
+    let itemsPriceText: Observable<String>
+    let itemsVatText: Observable<String>
+    let totalPriceText: Observable<String>
 
-    func orderedList() -> Observable<String> {
-        return selectedMenus
-            .map {
-                $0.map { "\($0.name) \($0.count)개\n" }.joined()
-            }
-    }
+    init(_ selectedMenus: [ViewMenu] = []) {
+        let menus = Observable.just(selectedMenus)
+        let price = menus.map { $0.map { $0.price * $0.count }.reduce(0, +) }
+        let vat = price.map { Int(Float($0) * 0.1 / 10 + 0.5) * 10 }
 
-    func itemsPrice() -> Observable<Int> {
-        return selectedMenus
-            .map { $0.map { $0.price * $0.count }.reduce(0, +) }
-    }
+        orderedList = menus
+            .map { $0.map { "\($0.name) \($0.count)개\n" }.joined() }
 
-    func itemsPriceText() -> Observable<String> {
-        return itemsPrice()
-            .map { $0.currencyKR() }
-    }
+        itemsPriceText = price.map { $0.currencyKR() }
 
-    func itemsVat() -> Observable<Int> {
-        return itemsPrice()
-            .map { Int(Float($0) * 0.1 / 10 + 0.5) * 10 }
-    }
+        itemsVatText = vat.map { $0.currencyKR() }
 
-    func itemsVatText() -> Observable<String> {
-        return itemsVat()
-            .map { $0.currencyKR() }
-    }
-
-    func totalPriceText() -> Observable<String> {
-        return Observable.combineLatest(itemsPrice(), itemsVat()) { $0 + $1 }
+        totalPriceText = Observable.combineLatest(price, vat) { $0 + $1 }
             .map { $0.currencyKR() }
     }
 }

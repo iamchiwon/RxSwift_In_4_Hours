@@ -19,10 +19,10 @@ class ViewMenuTest: XCTestCase {
             ViewMenu(name: "B", price: 200, count: 0),
         ]
 
-        let viewMenus = menuItems.map { ViewMenu.fromMenuItem($0) }
+        let viewMenus = menuItems.map { ViewMenu($0) }
         XCTAssertEqual(viewMenuItems, viewMenus)
 
-        let menus = viewMenus.map { ViewMenu.toMenuItem($0) }
+        let menus = viewMenus.map { $0.asMenuItem() }
         XCTAssertEqual(menuItems, menus)
     }
 }

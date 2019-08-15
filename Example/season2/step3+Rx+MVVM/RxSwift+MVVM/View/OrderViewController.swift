@@ -12,67 +12,64 @@ import RxViewController
 import UIKit
 
 class OrderViewController: UIViewController {
-    var viewModel: OrderViewModel!
+    static let identifier = "OrderViewController"
+
+    var viewModel: OrderViewModelType
     var disposeBag = DisposeBag()
 
     // MARK: - Life Cycle
+
+    init(viewModel: OrderViewModelType = OrderViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        viewModel = OrderViewModel()
+        super.init(coder: aDecoder)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
     }
 
-    // MARK: - UI Logic
+    // MARK: - UI Binding
 
     func setupBindings() {
-        rx.viewWillAppear
-            .take(1)
-            .subscribe(onNext: { [weak navigationController] _ in
-                navigationController?.isNavigationBarHidden = false
-            })
-            .disposed(by: disposeBag)
-
-        rx.viewWillDisappear
-            .take(1)
-            .subscribe(onNext: { [weak navigationController] _ in
-                navigationController?.isNavigationBarHidden = true
+        Observable.merge([
+            rx.viewWillAppear.take(1).map { _ in false },
+            rx.viewWillAppear.take(1).map { _ in true },
+        ])
+            .subscribe(onNext: { [weak navigationController] visible in
+                navigationController?.isNavigationBarHidden = visible
             })
             .disposed(by: disposeBag)
 
         ordersList.rx.text.orEmpty
-            .map { [weak self] text in
-                let width = self?.ordersList.bounds.width ?? 0
-                let font = self?.ordersList.font ?? UIFont.systemFont(ofSize: 20)
-                let height = self?.heightWithConstrainedWidth(text: text, width: width, font: font)
-                return height ?? 0
-            }
+            .distinctUntilChanged()
+            .map { [weak self] _ in self?.ordersList.calcHeight() ?? 0 }
             .bind(to: ordersListHeight.rx.constant)
             .disposed(by: disposeBag)
 
-        viewModel.orderedList()
+        viewModel.orderedList
             .bind(to: ordersList.rx.text)
             .disposed(by: disposeBag)
 
-        viewModel.itemsPriceText()
+        viewModel.itemsPriceText
             .bind(to: itemsPrice.rx.text)
             .disposed(by: disposeBag)
 
-        viewModel.itemsVatText()
+        viewModel.itemsVatText
             .bind(to: vatPrice.rx.text)
             .disposed(by: disposeBag)
 
-        viewModel.totalPriceText()
+        viewModel.totalPriceText
             .bind(to: totalPrice.rx.text)
             .disposed(by: disposeBag)
     }
 
-    func heightWithConstrainedWidth(text: String, width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = text.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
-        return boundingBox.height
-    }
-
-    // MARK: - Interface Builder
+    // MARK: - InterfaceBuilder Links
 
     @IBOutlet var ordersList: UITextView!
     @IBOutlet var ordersListHeight: NSLayoutConstraint!

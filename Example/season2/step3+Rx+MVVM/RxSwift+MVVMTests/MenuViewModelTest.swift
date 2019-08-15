@@ -24,28 +24,29 @@ class MenuViewModelTest: XCTestCase {
     var viewModel: MenuViewModel!
 
     override func setUp() {
-        viewModel = MenuViewModel()
-        viewModel.domain = TestStore()
+        viewModel = MenuViewModel(domain: TestStore())
     }
 
     func testFetching() {
-        viewModel.viewDidLoad()
-        
+        viewModel.fetchMenus.onNext(())
+
         let viewMenus = [
             ViewMenu(name: "A", price: 100, count: 0),
             ViewMenu(name: "B", price: 200, count: 0),
         ]
-        let fetched = try! viewModel.allMenus().toBlocking().first()!
+        let fetched = try! viewModel.allMenus.toBlocking().first()!
         XCTAssertEqual(viewMenus, fetched)
     }
-    
+
     func testTotalPrice() {
-        viewModel.viewDidLoad()
-        
-        viewModel.increaseMenuCount(index: 0, increasement: 1) // 100 * 1
-        viewModel.increaseMenuCount(index: 1, increasement: 2) // 200 * 2
-        
-        let totalPrice = try! viewModel.totalPrice().toBlocking().first()!
+        viewModel.fetchMenus.onNext(())
+
+        let menus = try! viewModel.allMenus.toBlocking().first()!
+
+        viewModel.increaseMenuCount.onNext((menu: menus[0], inc: 1)) // 100 * 1
+        viewModel.increaseMenuCount.onNext((menu: menus[1], inc: 2)) // 200 * 2
+
+        let totalPrice = try! viewModel.totalPriceText.toBlocking().first()!
         XCTAssertEqual(totalPrice, 500.currencyKR())
     }
 }

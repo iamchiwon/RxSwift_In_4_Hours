@@ -7,88 +7,109 @@
 //
 
 import Foundation
-import RxRelay
 import RxSwift
 
-class MenuViewModel {
-    var disposeBag = DisposeBag()
-    var domain: MenuFetchable = MenuStore()
+protocol MenuViewModelType {
+    var fetchMenus: AnyObserver<Void> { get }
+    var clearSelections: AnyObserver<Void> { get }
+    var makeOrder: AnyObserver<Void> { get }
+    var increaseMenuCount: AnyObserver<(menu: ViewMenu, inc: Int)> { get }
 
-    private let menuItems: BehaviorRelay<[ViewMenu]> = BehaviorRelay(value: [])
-    private let activityIndicatorVisible = BehaviorRelay(value: false)
-    private let errorMessage = PublishRelay<Error>()
+    var activated: Observable<Bool> { get }
+    var errorMessage: Observable<NSError> { get }
+    var allMenus: Observable<[ViewMenu]> { get }
+    var totalSelectedCountText: Observable<String> { get }
+    var totalPriceText: Observable<String> { get }
+    var showOrderPage: Observable<[ViewMenu]> { get }
+}
 
-    func viewDidLoad() {
-        fetchMenu()
-    }
+class MenuViewModel: MenuViewModelType {
+    let disposeBag = DisposeBag()
 
-    func fetchMenu() {
-        domain.fetchMenus()
-            .map { $0.map { ViewMenu.fromMenuItem($0) } }
-            .do(onSubscribed: { [weak self] in
-                self?.activityIndicatorVisible.accept(true)
-            })
-            .do(onDispose: { [weak self] in
-                self?.activityIndicatorVisible.accept(false)
-            })
-            .bind(to: menuItems)
+    // INPUT
+
+    let fetchMenus: AnyObserver<Void>
+    let clearSelections: AnyObserver<Void>
+    let makeOrder: AnyObserver<Void>
+    let increaseMenuCount: AnyObserver<(menu: ViewMenu, inc: Int)>
+
+    // OUTPUT
+
+    let activated: Observable<Bool>
+    let errorMessage: Observable<NSError>
+    let allMenus: Observable<[ViewMenu]>
+    let totalSelectedCountText: Observable<String>
+    let totalPriceText: Observable<String>
+    let showOrderPage: Observable<[ViewMenu]>
+
+    init(domain: MenuFetchable = MenuStore()) {
+        let fetching = PublishSubject<Void>()
+        let clearing = PublishSubject<Void>()
+        let ordering = PublishSubject<Void>()
+        let incleasing = PublishSubject<(menu: ViewMenu, inc: Int)>()
+
+        let menus = BehaviorSubject<[ViewMenu]>(value: [])
+        let activating = BehaviorSubject<Bool>(value: false)
+        let error = PublishSubject<Error>()
+
+        // INPUT
+
+        fetchMenus = fetching.asObserver()
+
+        fetching
+            .do(onNext: { _ in activating.onNext(true) })
+            .flatMap(domain.fetchMenus)
+            .map { $0.map { ViewMenu($0) } }
+            .do(onNext: { _ in activating.onNext(false) })
+            .do(onError: { err in error.onNext(err) })
+            .subscribe(onNext: menus.onNext)
             .disposed(by: disposeBag)
-    }
 
-    func allMenus() -> Observable<[ViewMenu]> {
-        return menuItems.asObservable()
-    }
+        clearSelections = clearing.asObserver()
 
-    func isActivating() -> Observable<Bool> {
-        return activityIndicatorVisible.asObservable()
-    }
+        clearing.withLatestFrom(menus)
+            .map { $0.map { $0.countUpdated(0) } }
+            .subscribe(onNext: menus.onNext)
+            .disposed(by: disposeBag)
 
-    func errors() -> Observable<Error> {
-        return errorMessage.asObservable()
-    }
+        makeOrder = ordering.asObserver()
 
-    func totalSelectedItemsCount() -> Observable<String> {
-        return menuItems
+        increaseMenuCount = incleasing.asObserver()
+
+        incleasing.map { $0.menu.countUpdated(max(0, $0.menu.count + $0.inc)) }
+            .withLatestFrom(menus) { (updated, originals) -> [ViewMenu] in
+                originals.map {
+                    guard $0.name == updated.name else { return $0 }
+                    return updated
+                }
+            }
+            .subscribe(onNext: menus.onNext)
+            .disposed(by: disposeBag)
+
+        // OUTPUT
+
+        allMenus = menus
+
+        activated = activating.distinctUntilChanged()
+
+        errorMessage = error.map { $0 as NSError }
+
+        totalSelectedCountText = menus
             .map { $0.map { $0.count }.reduce(0, +) }
             .map { "\($0)" }
-    }
 
-    func totalPrice() -> Observable<String> {
-        return menuItems
+        totalPriceText = menus
             .map { $0.map { $0.price * $0.count }.reduce(0, +) }
             .map { $0.currencyKR() }
-    }
 
-    func clearSelections() {
-        let menus = menuItems.value
-        let cleanMenu = menus.map { ViewMenu(name: $0.name, price: $0.price, count: 0) }
-        menuItems.accept(cleanMenu)
-    }
-
-    func orderMenus() -> Observable<String> {
-        let currentItems = menuItems.value
-        return Observable.just(currentItems)
-            .map { $0.map { $0.count }.reduce(0, +) }
-            .map { [weak self] in
-                guard $0 > 0 else {
+        showOrderPage = ordering.withLatestFrom(menus)
+            .map { $0.filter { $0.count > 0 } }
+            .do(onNext: { items in
+                if items.count == 0 {
                     let err = NSError(domain: "No Orders", code: -1, userInfo: nil)
-                    self?.errorMessage.accept(err)
-                    return ""
+                    error.onNext(err)
                 }
-                // segue identifier
-                return "OrderViewController"
-            }
-            .filter { !$0.isEmpty }
-    }
-
-    func increaseMenuCount(index: Int, increasement: Int) {
-        var menus = menuItems.value
-        menus[index].count = max(menus[index].count + increasement, 0)
-        menuItems.accept(menus)
-    }
-
-    func allSelectedMenus() -> Observable<[ViewMenu]> {
-        let selected = menuItems.value.filter { $0.count > 0 }
-        return Observable.just(selected)
+            })
+            .filter { $0.count > 0 }
     }
 }
