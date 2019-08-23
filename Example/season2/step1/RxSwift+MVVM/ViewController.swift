@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 let MEMBER_LIST_URL = "https://my.api.mockaroo.com/members_with_avatar.json?key=44ce18f0"
 
@@ -36,13 +37,12 @@ class ViewController: UIViewController {
     @IBAction func onSyncButtonTap() {
         editView.text = ""
         setVisibleWithAnimation(syncActivity, true)
-        guard let url = URL(string: MEMBER_LIST_URL),
-            let data = try? Data(contentsOf: url),
-            let json = String(data: data, encoding: .utf8) else {
-            setVisibleWithAnimation(syncActivity, false)
-            return
-        }
+        
+        let url = URL(string: MEMBER_LIST_URL)!
+        let data = try! Data(contentsOf: url)
+        let json = String(data: data, encoding: .utf8)
         editView.text = json
+        
         setVisibleWithAnimation(syncActivity, false)
     }
 
@@ -53,15 +53,11 @@ class ViewController: UIViewController {
         editView.text = ""
         setVisibleWithAnimation(asyncActivity, true)
         DispatchQueue.global().async {
-            guard let url = URL(string: MEMBER_LIST_URL),
-                let data = try? Data(contentsOf: url),
-                let json = String(data: data, encoding: .utf8) else {
-                DispatchQueue.main.async { [weak self] in
-                    self?.setVisibleWithAnimation(self?.asyncActivity, false)
-                }
-
-                return
-            }
+            
+            let url = URL(string: MEMBER_LIST_URL)!
+            let data = try! Data(contentsOf: url)
+            let json = String(data: data, encoding: .utf8)
+            
             DispatchQueue.main.async { [weak self] in
                 self?.editView.text = json
                 self?.setVisibleWithAnimation(self?.asyncActivity, false)

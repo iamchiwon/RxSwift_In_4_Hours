@@ -7,5 +7,6 @@ target 'RxSwift+MVVM' do
 
   # Pods for RxSwift+MVVM
   pod 'RxSwift'
+  pod 'SwiftyJSON'
 
 end
