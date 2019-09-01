@@ -84,6 +84,7 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
 1. MVVM 아키텍쳐
 	- 어플리케이션 아키텍쳐<br/>
     ![architectures](docs/mvc_mvp_mvvm.jpeg)<br/>
+        크게보기([MVC](docs/mvc.jpeg), [MVP](docs/mvp.jpeg), [MVVM](docs/mvvm.jpeg))
 	- 왜 MVVM을 쓰는가?
 	- MVVM과 RxSwift의 꿀조합
 
