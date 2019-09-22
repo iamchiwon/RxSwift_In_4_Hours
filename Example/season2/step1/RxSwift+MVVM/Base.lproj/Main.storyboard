@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,11 +35,11 @@
                                                     <constraint firstAttribute="height" constant="48" id="snx-v6-59t"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                <state key="normal" title="SYNC">
+                                                <state key="normal" title="LOAD">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onSyncButtonTap" destination="BYZ-38-t0r" eventType="touchUpInside" id="WcR-eN-p76"/>
+                                                    <action selector="onLoad" destination="BYZ-38-t0r" eventType="touchUpInside" id="mYa-jB-mXy"/>
                                                 </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SsN-yF-kuk">
@@ -49,30 +47,8 @@
                                             </activityIndicatorView>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7DL-TX-W5y">
-                                        <rect key="frame" x="0.0" y="104" width="374" height="48"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P4N-9g-ncm">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="48"/>
-                                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="dlA-oS-9l9"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                <state key="normal" title="ASYNC">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="onAsyncButtonTap" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Lp-2C-la9"/>
-                                                </connections>
-                                            </button>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="m2u-XW-rjn">
-                                                <rect key="frame" x="0.0" y="0.0" width="0.0" height="48"/>
-                                            </activityIndicatorView>
-                                        </subviews>
-                                    </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="N0G-2f-u07">
-                                        <rect key="frame" x="0.0" y="168" width="374" height="650"/>
+                                        <rect key="frame" x="0.0" y="104" width="374" height="714"/>
                                         <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -91,9 +67,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="asyncActivity" destination="m2u-XW-rjn" id="N53-V6-611"/>
+                        <outlet property="activityIndicator" destination="SsN-yF-kuk" id="uLl-Da-Eaf"/>
                         <outlet property="editView" destination="N0G-2f-u07" id="PSz-A3-ZI2"/>
-                        <outlet property="syncActivity" destination="SsN-yF-kuk" id="huJ-Fv-mVm"/>
                         <outlet property="timerLabel" destination="SPY-kT-QZM" id="ZkV-Jj-sd6"/>
                     </connections>
                 </viewController>

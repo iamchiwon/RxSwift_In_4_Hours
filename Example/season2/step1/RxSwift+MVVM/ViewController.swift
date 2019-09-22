@@ -6,8 +6,9 @@
 //  Copyright © 2019 iamchiwon. All rights reserved.
 //
 
-import UIKit
+import RxSwift
 import SwiftyJSON
+import UIKit
 
 let MEMBER_LIST_URL = "https://my.api.mockaroo.com/members_with_avatar.json?key=44ce18f0"
 
@@ -33,35 +34,17 @@ class ViewController: UIViewController {
 
     // MARK: SYNC
 
-    @IBOutlet var syncActivity: UIActivityIndicatorView!
-    @IBAction func onSyncButtonTap() {
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+
+    @IBAction func onLoad() {
         editView.text = ""
-        setVisibleWithAnimation(syncActivity, true)
-        
+        setVisibleWithAnimation(activityIndicator, true)
+
         let url = URL(string: MEMBER_LIST_URL)!
         let data = try! Data(contentsOf: url)
         let json = String(data: data, encoding: .utf8)
-        editView.text = json
+        self.editView.text = json
         
-        setVisibleWithAnimation(syncActivity, false)
-    }
-
-    // MARK: ASYNC
-
-    @IBOutlet var asyncActivity: UIActivityIndicatorView!
-    @IBAction func onAsyncButtonTap() {
-        editView.text = ""
-        setVisibleWithAnimation(asyncActivity, true)
-        DispatchQueue.global().async {
-            
-            let url = URL(string: MEMBER_LIST_URL)!
-            let data = try! Data(contentsOf: url)
-            let json = String(data: data, encoding: .utf8)
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.editView.text = json
-                self?.setVisibleWithAnimation(self?.asyncActivity, false)
-            }
-        }
+        self.setVisibleWithAnimation(self.activityIndicator, false)
     }
 }
