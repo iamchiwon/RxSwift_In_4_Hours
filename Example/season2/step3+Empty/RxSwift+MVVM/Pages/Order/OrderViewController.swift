@@ -13,8 +13,6 @@ class OrderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateOrderInfos()
-        updateTextViewHeight()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,34 +25,39 @@ class OrderViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // TODO: update selected menu info
+        ordersList.text = """
+        SELECTED MENU 1
+        SELECTED MENU 2
+        SELECTED MENU 3
+        SELECTED MENU 4
+        SELECTED MENU 5
+        SELECTED MENU 6
+        SELECTED MENU 7
+        SELECTED MENU 8
+        SELECTED MENU 9
+        """
+        
+        updateTextViewHeight()
+    }
+
     // MARK: - UI Logic
 
-    func heightWithConstrainedWidth(text: String, width: CGFloat, font: UIFont) -> CGFloat {
-        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
-        let boundingBox = text.boundingRect(with: constraintRect, options: [.usesLineFragmentOrigin, .usesFontLeading], attributes: [NSAttributedString.Key.font: font], context: nil)
-        return boundingBox.height
-    }
-
     func updateTextViewHeight() {
-        let height = heightWithConstrainedWidth(text: ordersList.text,
-                                                width: ordersList.bounds.width,
-                                                font: ordersList.font ?? UIFont.systemFont(ofSize: 20))
+        let text = ordersList.text ?? ""
+        let width = ordersList.bounds.width
+        let font = ordersList.font ?? UIFont.systemFont(ofSize: 20)
+
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = text.boundingRect(with: constraintRect,
+                                            options: [.usesLineFragmentOrigin, .usesFontLeading],
+                                            attributes: [NSAttributedString.Key.font: font],
+                                            context: nil)
+        let height = boundingBox.height
+
         ordersListHeight.constant = height + 40
-    }
-
-    // MARK: - Business Logic
-
-    var orderedMenuItems: [(menu: MenuItem, count: Int)] = []
-
-    func updateOrderInfos() {
-        let allItemsText = orderedMenuItems.map { "\($0.menu.name) \($0.count)개" }.joined(separator: "\n")
-        let allItemsPrice = orderedMenuItems.map { $0.menu.price * $0.count }.reduce(0, +)
-        let allVatPrice = Int(Float(allItemsPrice) * 0.1 / 10 + 0.5) * 10
-
-        ordersList.text = allItemsText
-        itemsPrice.text = allItemsPrice.currencyKR()
-        vatPrice.text = allVatPrice.currencyKR()
-        totalPrice.text = (allItemsPrice + allVatPrice).currencyKR()
     }
 
     // MARK: - Interface Builder
