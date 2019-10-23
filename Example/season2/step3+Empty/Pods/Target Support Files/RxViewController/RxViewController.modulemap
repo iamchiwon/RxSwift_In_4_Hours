@@ -1,0 +1,6 @@
+framework module RxViewController {
+  umbrella header "RxViewController-umbrella.h"
+
+  export *
+  module * { export * }
+}
