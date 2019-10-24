@@ -13,6 +13,9 @@ class OrderViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //let totalPrice = 0
+        //let vatPrice = Int(Float(allItemsPrice) * 0.1 / 10 + 0.5) * 10
     }
 
     override func viewWillAppear(_ animated: Bool) {
