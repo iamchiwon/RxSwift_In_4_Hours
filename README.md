@@ -99,9 +99,8 @@ RxSwift의 근본적인 학습 자체보다는, 빠르게 사용법을 익혀 �
 
 - [시즌1 자료 보기](README_s1.md)
 - [카카오톡 RxSwift 오픈 채팅방](https://open.kakao.com/o/gl2YZjq)
-- [Video] [RxSwift+MVVM 4시간에 끝내기 (시즌2)](https://www.youtube.com/watch?v=jVyA5DV6r8w&list=PL03rJBlpwTaBrhux_C8RmtWDI_kZSLvdQ)<br/>
-  ![]()
-  [![오프라인 모임 종햡편](https://www.youtube.com/watch?v=iHKBNYMWd5I)
+- [Video] [RxSwift+MVVM 4시간에 끝내기 (시즌2)](https://www.youtube.com/watch?v=iHKBNYMWd5I)<br/>
+  ![오프라인 모임 종햡편](https://img.youtube.com/vi/iHKBNYMWd5I/mqdefault.jpg)
 
 <br/>
 
